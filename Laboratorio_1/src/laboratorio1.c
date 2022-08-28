@@ -7,7 +7,7 @@ word __at 0x2007 __CONFIG = (_WDTE_OFF & _WDT_OFF & _MCLRE_OFF);  // WDT y MCLR 
 
 void delay (unsigned int tiempo);
 void mostrar_num (int numero, int display); 
-unsigned int rando(unsigned int start_range,unsigned int end_range);
+unsigned int rando(unsigned int min, unsigned int max);
  
 void main(void)
 {
@@ -15,53 +15,63 @@ void main(void)
     TRISIO = 0b00001000; //Poner el pin 3 como entrada y los demás como salidas
 	GPIO = 0x00; //Poner pines en bajo
  
-	//unsigned int cuenta; 
 	unsigned int num1, num2;
 	unsigned int cuenta = 0 ;
  
-    //Loop forever
+    //Loop para siempre 
     while ( 1 )
     {
-		
+		// Se generan los dos números aletorios
 		num1 = rando(0,9);
 		num2 = rando(0,9); 
 
 		if (GP3 ==1)
 		{
-			cuenta =+cuenta+1;
-		}
+			cuenta=cuenta+1; // Si se estripa el botón se aumenta la cuenta 
 
-		if (cuenta ==17)
-		{	
-			cuenta = 0;  
-			while (GP3==1)
-				mostrar_num(9,0);
-				delay(5);
-				mostrar_num(9,1);
-				delay(5);
-		}
-
-		while (GP3 == 1)
+			while (GP3 == 1)
 			{
+			// Cuando el botón se estrtipa se muestran los dos números random generados 
 			mostrar_num(num1,0);
 			delay(5);
 			mostrar_num(num2,1);
 			delay(5); 
-			}
+			}	
 
+			if (cuenta ==16)
+		{
+			// Si la cuenta llega a 16 entonces se alternan con el número
+			// 9 en los displays
+			mostrar_num(9,0);
+			delay(200);
+			mostrar_num(9,1);
+			delay(200);
+			mostrar_num(9,0);
+			delay(200);
+			mostrar_num(9,1);
+			delay(200);
+			mostrar_num(9,0);
+			delay(200);
+			mostrar_num(9,1);
+			delay(200);
+			cuenta = 0; // Se vuelve a poner la cuenta en 0 
+		}
+		}
+
+
+		// Mientras no se precione el botón se están generando y mostrando
+		// números aletorios en los displays generando el efecto de tómbola
 		mostrar_num(num1,0);
 		delay(5);
 		mostrar_num(num2,1);
 		delay(5);
-   
 	}
  
 }
 
+//Función para mostrar los números en cada display 
 void mostrar_num (int numero, int display)
 {
-
-
 	if (display == 0)
 	{
 		if (numero == 0) GPIO = 0b00000000;
@@ -108,31 +118,25 @@ void mostrar_num (int numero, int display)
 		else GPIO = 0b00110001;
 	}
 
-
 }
 
-
-unsigned int rando(unsigned int start_range,unsigned int end_range)
+// Función para obtener número aleatorio
+unsigned int rando(unsigned int min,unsigned int max)
   {
-    static unsigned int rand = 0xACE1U; /* Any nonzero start state will work. */
-
-    /*check for valid range.*/
-    if(start_range == end_range) {
-        return start_range;
-    }
+    static unsigned int rand = 0xAFEBU; /* Any nonzero start state will work. */
 
     /*get the random in end-range.*/
-    rand += 0x3AD;
-    rand %= end_range;
+    rand += 0x3FD;
+    rand %= max;
 
     /*get the random in start-range.*/
-    while(rand < start_range){
-        rand = rand + end_range - start_range;
+    while(rand < min){
+        rand = rand + max - min;
     }
-
     return rand;
   }
 
+// Función de retraso 
 void delay(unsigned int tiempo)
 {
 	unsigned int i;
