@@ -16,8 +16,8 @@ void main(void)
 	GPIO = 0x00; //Poner pines en bajo
  
 	unsigned int num1, num2;
-	unsigned int cuenta = 0 ;
- 
+	unsigned int cuenta_final = 0;
+	
     //Loop para siempre 
     while ( 1 )
     {
@@ -27,37 +27,36 @@ void main(void)
 
 		if (GP3 ==1)
 		{
-			cuenta=cuenta+1; // Si se estripa el botón se aumenta la cuenta 
+			cuenta_final=cuenta_final+1; // Si se estripa el botón se aumenta la cuenta 
 
 			while (GP3 == 1)
 			{
-			// Cuando el botón se estrtipa se muestran los dos números random generados 
-			mostrar_num(num1,0);
-			delay(5);
-			mostrar_num(num2,1);
-			delay(5); 
+				// Cuando el botón se estrtipa se muestran los dos números random generados 
+				mostrar_num(num1,0);
+				delay(5);
+				mostrar_num(num2,1);
+				delay(5); 
 			}	
 
-			if (cuenta ==16)
-		{
-			// Si la cuenta llega a 16 entonces se alternan con el número
-			// 9 en los displays
-			mostrar_num(9,0);
-			delay(200);
-			mostrar_num(9,1);
-			delay(200);
-			mostrar_num(9,0);
-			delay(200);
-			mostrar_num(9,1);
-			delay(200);
-			mostrar_num(9,0);
-			delay(200);
-			mostrar_num(9,1);
-			delay(200);
-			cuenta = 0; // Se vuelve a poner la cuenta en 0 
+			if (cuenta_final ==16)
+			{
+				// Si la cuenta llega a 16 entonces se alternan con el número
+				// 9 en los displays
+				mostrar_num(9,0);
+				delay(200);
+				mostrar_num(9,1);
+				delay(200);
+				mostrar_num(9,0);
+				delay(200);
+				mostrar_num(9,1);
+				delay(200);
+				mostrar_num(9,0);
+				delay(200);
+				mostrar_num(9,1);
+				delay(200);
+				cuenta_final = 0; // Se vuelve a poner la cuenta en 0 
+			}
 		}
-		}
-
 
 		// Mientras no se precione el botón se están generando y mostrando
 		// números aletorios en los displays generando el efecto de tómbola
@@ -65,6 +64,7 @@ void main(void)
 		delay(5);
 		mostrar_num(num2,1);
 		delay(5);
+
 	}
  
 }
@@ -120,20 +120,18 @@ void mostrar_num (int numero, int display)
 
 }
 
-// Función para obtener número aleatorio
-unsigned int rando(unsigned int min,unsigned int max)
-  {
-    static unsigned int rand = 0xAFEBU; /* Any nonzero start state will work. */
 
-    /*get the random in end-range.*/
+// Función para obtener número aleatorio
+unsigned int rando(unsigned int min, unsigned int max)
+  {
+	static unsigned int rand = 0xAFEBU; 
     rand += 0x3FD;
     rand %= max;
-
-    /*get the random in start-range.*/
     while(rand < min){
         rand = rand + max - min;
     }
     return rand;
+  
   }
 
 // Función de retraso 

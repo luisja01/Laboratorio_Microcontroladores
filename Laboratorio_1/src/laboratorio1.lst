@@ -1,6 +1,6 @@
 gplink-1.4.0 #1107 (Apr  3 2018)
 Copyright (c) 1998-2014 gputils project
-Listing File Generated: 8-28-2022  10:39:11
+Listing File Generated: 9-1-2022  17:33:03
  
  
 Address  Value    Disassembly              Source
@@ -212,7 +212,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	16; "laboratorio1.c"	GPIO = 0x00; //Poner pines en bajo
 0000ee   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 0000ef   0185     clrf    0x05             	CLRF	_GPIO
-                                           ;	.line	19; "laboratorio1.c"	unsigned int cuenta = 0 ;
+                                           ;	.line	19; "laboratorio1.c"	unsigned int cuenta_final = 0;
 0000f0   01b0     clrf    0x30             	CLRF	r0x1014
 0000f1   01b1     clrf    0x31             	CLRF	r0x1015
                                            _00113_DS_:
@@ -253,7 +253,7 @@ Address  Value    Disassembly              Source
 00010d   3a01     xorlw   0x01             	XORLW	0x01
 00010e   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
 00010f   2986     goto    0x0186           	GOTO	_00111_DS_
-                                           ;	.line	30; "laboratorio1.c"	cuenta=cuenta+1; // Si se estripa el botón se aumenta la cuenta 
+                                           ;	.line	30; "laboratorio1.c"	cuenta_final=cuenta_final+1; // Si se estripa el botón se aumenta la cuenta 
 000110   0ab0     incf    0x30, 0x1        	INCF	r0x1014,F
 000111   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000112   0ab1     incf    0x31, 0x1        	INCF	r0x1015,F
@@ -305,7 +305,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	$
 000133   2913     goto    0x0113           	GOTO	_00105_DS_
                                            _00107_DS_:
-                                           ;	.line	41; "laboratorio1.c"	if (cuenta ==16)
+                                           ;	.line	41; "laboratorio1.c"	if (cuenta_final ==16)
 000134   0830     movf    0x30, 0x0        	MOVF	r0x1014,W
 000135   3a10     xorlw   0x10             	XORLW	0x10
 000136   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -422,11 +422,11 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_delay
 000183   22f3     call    0x02f3           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	57; "laboratorio1.c"	cuenta = 0; // Se vuelve a poner la cuenta en 0 
+                                           ;	.line	57; "laboratorio1.c"	cuenta_final = 0; // Se vuelve a poner la cuenta en 0 
 000184   01b0     clrf    0x30             	CLRF	r0x1014
 000185   01b1     clrf    0x31             	CLRF	r0x1015
                                            _00111_DS_:
-                                           ;	.line	64; "laboratorio1.c"	mostrar_num(num1,0);
+                                           ;	.line	63; "laboratorio1.c"	mostrar_num(num1,0);
 000186   3000     movlw   0x00             	MOVLW	0x00
 000187   00ad     movwf   0x2d             	MOVWF	STK02
 000188   3000     movlw   0x00             	MOVLW	0x00
@@ -437,14 +437,14 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_mostrar_num
 00018d   2002     call    0x0002           	CALL	_mostrar_num
                                            	PAGESEL	$
-                                           ;	.line	65; "laboratorio1.c"	delay(5);
+                                           ;	.line	64; "laboratorio1.c"	delay(5);
 00018e   3005     movlw   0x05             	MOVLW	0x05
 00018f   00af     movwf   0x2f             	MOVWF	STK00
 000190   3000     movlw   0x00             	MOVLW	0x00
                                            	PAGESEL	_delay
 000191   22f3     call    0x02f3           	CALL	_delay
                                            	PAGESEL	$
-                                           ;	.line	66; "laboratorio1.c"	mostrar_num(num2,1);
+                                           ;	.line	65; "laboratorio1.c"	mostrar_num(num2,1);
 000192   3001     movlw   0x01             	MOVLW	0x01
 000193   00ad     movwf   0x2d             	MOVWF	STK02
 000194   3000     movlw   0x00             	MOVLW	0x00
@@ -455,7 +455,7 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	_mostrar_num
 000199   2002     call    0x0002           	CALL	_mostrar_num
                                            	PAGESEL	$
-                                           ;	.line	67; "laboratorio1.c"	delay(5);
+                                           ;	.line	66; "laboratorio1.c"	delay(5);
 00019a   3005     movlw   0x05             	MOVLW	0x05
 00019b   00af     movwf   0x2f             	MOVWF	STK00
 00019c   3000     movlw   0x00             	MOVLW	0x00
@@ -485,11 +485,11 @@ Address  Value    Disassembly              Source
                                            S_laboratorio1__delay	code
                                            _delay:
                                            ; 2 exit points
-                                           ;	.line	140; "laboratorio1.c"	void delay(unsigned int tiempo)
+                                           ;	.line	138; "laboratorio1.c"	void delay(unsigned int tiempo)
 0002f3   00c2     movwf   0x42             	MOVWF	r0x1002
 0002f4   082f     movf    0x2f, 0x0        	MOVF	STK00,W
 0002f5   00c1     movwf   0x41             	MOVWF	r0x1003
-                                           ;	.line	145; "laboratorio1.c"	for(i=0;i<tiempo;i++)
+                                           ;	.line	143; "laboratorio1.c"	for(i=0;i<tiempo;i++)
 0002f6   01c3     clrf    0x43             	CLRF	r0x1004
 0002f7   01c4     clrf    0x44             	CLRF	r0x1005
                                            _00206_DS_:
@@ -502,8 +502,8 @@ Address  Value    Disassembly              Source
                                            _00227_DS_:
 0002fe   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 0002ff   2b19     goto    0x0319           	GOTO	_00208_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7ffc3c147d80
-                                           ;	.line	146; "laboratorio1.c"	for(j=0;j<1275;j++);
+                                           ;;genSkipc:3307: created from rifx:0x7ffec8588700
+                                           ;	.line	144; "laboratorio1.c"	for(j=0;j<1275;j++);
 000300   30fb     movlw   0xfb             	MOVLW	0xfb
 000301   00c5     movwf   0x45             	MOVWF	r0x1006
 000302   3004     movlw   0x04             	MOVLW	0x04
@@ -526,13 +526,13 @@ Address  Value    Disassembly              Source
 000312   0447     iorwf   0x47, 0x0        	IORWF	r0x1008,W
 000313   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
 000314   2b04     goto    0x0304           	GOTO	_00204_DS_
-                                           ;	.line	145; "laboratorio1.c"	for(i=0;i<tiempo;i++)
+                                           ;	.line	143; "laboratorio1.c"	for(i=0;i<tiempo;i++)
 000315   0ac3     incf    0x43, 0x1        	INCF	r0x1004,F
 000316   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000317   0ac4     incf    0x44, 0x1        	INCF	r0x1005,F
 000318   2af8     goto    0x02f8           	GOTO	_00206_DS_
                                            _00208_DS_:
-                                           ;	.line	147; "laboratorio1.c"	}
+                                           ;	.line	145; "laboratorio1.c"	}
 000319   0008     return                   	RETURN	
                                            ; exit point of _delay
                                            
@@ -557,7 +557,7 @@ Address  Value    Disassembly              Source
                                            S_laboratorio1__rando	code
                                            _rando:
                                            ; 2 exit points
-                                           ;	.line	124; "laboratorio1.c"	unsigned int rando(unsigned int min,unsigned int max)
+                                           ;	.line	125; "laboratorio1.c"	unsigned int rando(unsigned int min, unsigned int max)
 000289   00bc     movwf   0x3c             	MOVWF	r0x100A
 00028a   082f     movf    0x2f, 0x0        	MOVF	STK00,W
 00028b   00bb     movwf   0x3b             	MOVWF	r0x100B
@@ -565,14 +565,14 @@ Address  Value    Disassembly              Source
 00028d   00be     movwf   0x3e             	MOVWF	r0x100C
 00028e   082d     movf    0x2d, 0x0        	MOVF	STK02,W
 00028f   00bd     movwf   0x3d             	MOVWF	r0x100D
-                                           ;	.line	129; "laboratorio1.c"	rand += 0x3FD;
+                                           ;	.line	128; "laboratorio1.c"	rand += 0x3FD;
 000290   30fd     movlw   0xfd             	MOVLW	0xfd
 000291   07dc     addwf   0x5c, 0x1        	ADDWF	_rando_rand_65536_16,F
 000292   3003     movlw   0x03             	MOVLW	0x03
 000293   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 000294   3004     movlw   0x04             	MOVLW	0x04
 000295   07dd     addwf   0x5d, 0x1        	ADDWF	(_rando_rand_65536_16 + 1),F
-                                           ;	.line	130; "laboratorio1.c"	rand %= max;
+                                           ;	.line	129; "laboratorio1.c"	rand %= max;
 000296   083d     movf    0x3d, 0x0        	MOVF	r0x100D,W
 000297   00ad     movwf   0x2d             	MOVWF	STK02
 000298   083e     movf    0x3e, 0x0        	MOVF	r0x100C,W
@@ -587,7 +587,7 @@ Address  Value    Disassembly              Source
 00029f   082f     movf    0x2f, 0x0        	MOVF	STK00,W
 0002a0   00dc     movwf   0x5c             	MOVWF	_rando_rand_65536_16
                                            _00182_DS_:
-                                           ;	.line	133; "laboratorio1.c"	while(rand < min){
+                                           ;	.line	130; "laboratorio1.c"	while(rand < min){
 0002a1   083c     movf    0x3c, 0x0        	MOVF	r0x100A,W
 0002a2   025d     subwf   0x5d, 0x0        	SUBWF	(_rando_rand_65536_16 + 1),W
 0002a3   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
@@ -597,8 +597,8 @@ Address  Value    Disassembly              Source
                                            _00195_DS_:
 0002a7   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 0002a8   2abb     goto    0x02bb           	GOTO	_00184_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7ffc3c147d80
-                                           ;	.line	134; "laboratorio1.c"	rand = rand + max - min;
+                                           ;;genSkipc:3307: created from rifx:0x7ffec8588700
+                                           ;	.line	131; "laboratorio1.c"	rand = rand + max - min;
 0002a9   083d     movf    0x3d, 0x0        	MOVF	r0x100D,W
 0002aa   075c     addwf   0x5c, 0x0        	ADDWF	_rando_rand_65536_16,W
 0002ab   00bf     movwf   0x3f             	MOVWF	r0x100E
@@ -618,11 +618,11 @@ Address  Value    Disassembly              Source
 0002b9   00dd     movwf   0x5d             	MOVWF	(_rando_rand_65536_16 + 1)
 0002ba   2aa1     goto    0x02a1           	GOTO	_00182_DS_
                                            _00184_DS_:
-                                           ;	.line	136; "laboratorio1.c"	return rand;
+                                           ;	.line	133; "laboratorio1.c"	return rand;
 0002bb   085c     movf    0x5c, 0x0        	MOVF	_rando_rand_65536_16,W
 0002bc   00af     movwf   0x2f             	MOVWF	STK00
 0002bd   085d     movf    0x5d, 0x0        	MOVF	(_rando_rand_65536_16 + 1),W
-                                           ;	.line	137; "laboratorio1.c"	}
+                                           ;	.line	135; "laboratorio1.c"	}
 0002be   0008     return                   	RETURN	
                                            ; exit point of _rando
                                            
