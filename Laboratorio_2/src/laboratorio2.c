@@ -7,6 +7,7 @@ int main(void)
   //Se configuran los registros
   DDRB = 0b01111111; //Configuracion del puerto
   DDRD = 0b11110011; //Entradas GPIOS 2 y 3
+  PORTD = 0x00;
 
   //Parpadear
   while (1) {
@@ -18,7 +19,7 @@ int main(void)
     PORTB = 0x00; _delay_ms(5000);
     PORTB = 0b01111111; _delay_ms(5000);
     */
-   if ((PD2 == 1)|(PD3 == 1))
+   if (PIND & ((1 << PD2)|(1 << PD3)))//Encender cuando se presiona un boton
    {
     PORTB = 0b01111111; 
    }
