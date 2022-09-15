@@ -6,17 +6,17 @@
 
 //Estados a utilizar
 #define setup 0
-#define peatonal 1
-#define vehicular 2 
+#define paso_peatonal 1
+#define paso_vehicular 2 
 
 //Declaración de función
 void maquina_estados();
-
+void time_delay();
 //Variables a utilizar;
 
 int estado_actual;
 int estado_siguiente;
-
+int boton=0; 
 //Funcion principal
 int main(void)
 {
@@ -30,7 +30,18 @@ int main(void)
   PIND = 0X00; //Se inicia en 0
   PORTD = 0x00; //Se inicia en 0
   PORTB = 0x00; //Se inicia en 0
+
+  //Configuración para interrupciones con timer
+  TCCR0A=0x00;   //Modo normnal del timer 
+  TCCR0B=0x00;
+  TCCR0B |= (1<<CS00)|(1<<CS02);   //Se pone el prescaler con un 1024
+  TCNT0=0;    //Timer en 0
   sei(); //Se habilitan las interrupciones globales
+
+  // Interrupciones 
+  GIMSK |= (1<<INT0);  //  Habilitando interrupciones INT0 e INT1
+  //MCUCR |= (1<<ISC00)|(1<<ISC01); 
+
 
   //Las entradas son PD2 y PD3, donde sus interrupciones son PCINT13 y PCINT14 respectivamente, o INT0 e INT1
   //En este caso, las subrutinas de interrupciones cambiarán únicamente un cambio de estado. 
@@ -52,25 +63,50 @@ void maquina_estados(){
     case setup:
       PORTB = 0b00000000;
       _delay_ms(10000);
-      estado_siguiente = vehicular; 
+      estado_siguiente = paso_vehicular; 
       break;
 
     //Estado peatonal
-    case peatonal:
+    case paso_peatonal:
       PORTB = 0b01111000;
       _delay_ms(10000);
-      estado_siguiente = vehicular; 
+      //estado_siguiente = paso_vehicular; 
       break;//Se sale de la funcion
 
     //Estado paso vehiculo
-    case vehicular: 
-      PORTB = 0b00000111;
-      if (PIND & ((1 << PD2)|(1 << PD3)))//Si se estripa el botón cambiar de estado 
-      { 
-        estado_siguiente = peatonal; 
-      }
-      break; //Se sale de la funcion
+    case paso_vehicular: 
+      //PORTB = 0b01010001;
 
+      break; //Se sale de la funcion
   }
 
 }
+
+//Rutinas a ejecutar con interrupciones
+ISR (INT0_vect)        // Interrupt service routine 
+{
+
+  PORTB|=(1<<PB2);
+  time_delay();
+  PORTB&=~(1<<PB2);
+  time_delay();
+  PORTB|=(1<<PB2);
+  time_delay();
+  PORTB&=~(1<<PB2);
+  time_delay();
+
+}
+
+void time_delay(){
+  unsigned int i=0; 
+   while(i<=32)
+   { 
+      while((TIFR & (1 << TOV0) )==0);  //Se espera a que contador llegue de 0 a 255
+      TIFR|=(1<<TOV0);                  // Se limpia la bandera al finalizar cuenta
+      i++;                              // Se incrementa en 1
+   }
+}
+
+
+
+ 
