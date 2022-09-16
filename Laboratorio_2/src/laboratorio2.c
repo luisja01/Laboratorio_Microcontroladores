@@ -16,16 +16,18 @@ Ciclo: II-2022
 #define setup 0
 #define paso_peatonal 1
 #define paso_vehicular 2 
-#define parpadear 3 
+#define parp 3
 
 //Declaración de función
 void maquina_estados();
 void time_delay(int n);
+void parpadear(int luces);
 //Variables a utilizar;
 
 int salida = 0x00;
 int estado_actual;
 int estado_siguiente;
+bool cambio_estado = false;
 
 //Funcion principal
 int main(void)
@@ -90,10 +92,10 @@ void maquina_estados(){
     case paso_vehicular: 
       salida = 0b01010100;
       PORTB = salida;
-      estado_siguiente = parpadear;
+      estado_siguiente = parp;
       break; //Se sale de la funcion
 
-    case parpadear:
+    case parp:
       salida = 0b01010010;
       PORTB = salida;
       time_delay(6000);
@@ -104,22 +106,6 @@ void maquina_estados(){
   }
 
 }
-
-//Rutinas a ejecutar con interrupciones
-/*
-ISR (INT0_vect)        // Interrupt service routine 
-{
-
-  PORTB|=(1<<PB2);
-  time_delay();
-  PORTB&=~(1<<PB2);
-  time_delay();
-  PORTB|=(1<<PB2);
-  time_delay();
-  PORTB&=~(1<<PB2);
-  time_delay();
-
-}*/
 
 ISR (INT0_vect)        // Interrupt service routine 
 {
@@ -142,6 +128,18 @@ void time_delay(int n){
    }
 }
 
-
-
+void parpadear(int luces){
+  PORTB = 0x00;
+  time_delay(1000);
+  PORTB = luces;
+  time_delay(1000);
+  PORTB = 0x00;
+  time_delay(1000);
+  PORTB = luces;
+  time_delay(1000);
+  PORTB = 0x00;
+  time_delay(1000);
+  PORTB = luces;
+  time_delay(1000);
+}
  
