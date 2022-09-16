@@ -16,12 +16,12 @@ Ciclo: II-2022
 #define setup 0
 #define paso_peatonal 1
 #define paso_vehicular 2 
-#define parp 3
+#define transicion 3
 
 //Declaración de función
 void maquina_estados();
 void time_delay(int n);
-void parpadear(int luces);
+void parpadear(int apagado, int encedido, int final);
 //Variables a utilizar;
 
 int salida = 0x00;
@@ -35,6 +35,7 @@ int main(void)
 
   //Se inicializan los estados
   estado_siguiente = setup;
+  estado_actual = setup;
 
   //Se configuran los registros
   DDRB = 0b01111111; //Configuracion del puerto
@@ -67,7 +68,6 @@ int main(void)
     return 0;
 }
 
-
 //Función con implementación de máquina de estados
 void maquina_estados(){
   
@@ -83,7 +83,9 @@ void maquina_estados(){
     case paso_peatonal:
       salida = 0b00101001;
       PORTB = salida;
-      time_delay(10000);
+      time_delay(10);
+      parpadear(0b00000001,0b00101001,0b01010001);
+      time_delay(1);
       estado_siguiente = paso_vehicular; 
       estado_actual = paso_vehicular;
       break;//Se sale de la funcion
@@ -92,20 +94,22 @@ void maquina_estados(){
     case paso_vehicular: 
       salida = 0b01010100;
       PORTB = salida;
-      estado_siguiente = parp;
+      estado_siguiente = transicion;
       break; //Se sale de la funcion
 
-    case parp:
+    
+    case transicion:
       salida = 0b01010010;
-      PORTB = salida;
-      time_delay(6000);
+      parpadear(0b01010000,0b01010010,0b01010001);
+      time_delay(1);
       estado_siguiente = paso_peatonal;
       estado_actual = paso_peatonal;
       break; //Se sale de la funcion
-
+  
   }
 
 }
+
 
 ISR (INT0_vect)        // Interrupt service routine 
 {
@@ -120,26 +124,35 @@ ISR (INT1_vect)        // Interrupt service routine
 
 void time_delay(int n){
   unsigned int i=0; 
-   while(i<=n)
+  int valor = n*4386;
+  if (n == 0)
+  {
+    valor = 2193;
+  }
+  
+   while(i<=valor)
    { 
       while((TIFR & (1 << TOV0) )==0);  //Se espera a que contador llegue de 0 a 255
       TIFR|=(1<<TOV0);                  // Se limpia la bandera al finalizar cuenta
       i++;                              // Se incrementa en 1
    }
+
+   TIFR = 0x00;
 }
 
-void parpadear(int luces){
-  PORTB = 0x00;
-  time_delay(1000);
-  PORTB = luces;
-  time_delay(1000);
-  PORTB = 0x00;
-  time_delay(1000);
-  PORTB = luces;
-  time_delay(1000);
-  PORTB = 0x00;
-  time_delay(1000);
-  PORTB = luces;
-  time_delay(1000);
+void parpadear(int apagado, int encedido, int final){
+  PORTB = apagado;
+  time_delay(0);
+  PORTB = encedido;
+  time_delay(0);
+  PORTB = apagado;
+  time_delay(0);
+  PORTB = encedido;
+  time_delay(0);
+  PORTB = apagado;
+  time_delay(0);
+  PORTB = encedido;
+  time_delay(0);
+  PORTB = final;
 }
  
