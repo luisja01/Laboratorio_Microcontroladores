@@ -28,6 +28,8 @@ int salida = 0x00;
 int estado_actual;
 int estado_siguiente;
 bool cambio_estado = false;
+bool boton_presionado = false;
+int intr_count=0;
 
 //Funcion principal
 int main(void)
@@ -49,14 +51,14 @@ int main(void)
   TCCR0B=0x00;
   TCCR0B |= (1<<CS00)|(1<<CS02);   //Se pone el prescaler con un 1024
   TCNT0=0;    //Timer en 0
-  sei(); //Se habilitan las interrupciones globales
 
   // Interrupciones 
   GIMSK |= (1<<INT0);  //  Habilitando interrupciones INT0 e INT1
   GIMSK |= (1<<INT1);
   MCUCR |= (1<<ISC00)|(1<<ISC01); 
+  //TIMSK|=(1<<TOIE0); //se habilita interrupcion por timer 0
 
-
+  sei(); //Se habilitan las interrupciones globales
   //Las entradas son PD2 y PD3, donde sus interrupciones son PCINT13 y PCINT14 respectivamente, o INT0 e INT1
   //En este caso, las subrutinas de interrupciones cambiarán únicamente un cambio de estado. 
   //Loop que se ejecuta siempre
@@ -74,62 +76,85 @@ void maquina_estados(){
   switch(estado_actual){//Se utiliza un switch para considerar cada caso
 
     case setup:
+      //Estado para ignorar primera interrupcion a causa de carga de capacitores
       salida = 0b00000000;
       PORTB = salida;
       estado_siguiente = paso_vehicular; 
+      
       break;
 
     //Estado peatonal
     case paso_peatonal:
+      //Estado donde se permite el paso de peatones
       salida = 0b00101001;
       PORTB = salida;
       time_delay(10);
       parpadear(0b00000001,0b00101001,0b01010001);
       time_delay(1);
+      boton_presionado = false;
+      cambio_estado = false;
       estado_siguiente = paso_vehicular; 
-      estado_actual = paso_vehicular;
+      estado_actual = estado_siguiente;
       break;//Se sale de la funcion
 
     //Estado paso vehiculo
     case paso_vehicular: 
+      //Estado donde se permite el paso de vehiculos
       salida = 0b01010100;
       PORTB = salida;
       estado_siguiente = transicion;
-      break; //Se sale de la funcion
 
+      break; //Se sale de la funcion
     
     case transicion:
+    //Estado donde se realiza el cambio para habilitar el paso de peatones
+      parpadear(0b01010000,0b01010100,0b01010010);
       salida = 0b01010010;
-      parpadear(0b01010000,0b01010010,0b01010001);
+      PORTB = salida;
+      time_delay(2);
+      salida = 0b01010001;
+      PORTB = salida;
       time_delay(1);
       estado_siguiente = paso_peatonal;
       estado_actual = paso_peatonal;
       break; //Se sale de la funcion
-  
   }
 
 }
 
+ISR (TIMER0_OVF_vect)      //Interrupt vector for Timer0
+{
+  if (intr_count==189) //waiting for 63 because to get 1 sec delay
+  {
+    cambio_estado = true;
+    intr_count=0; //making intr_count=0 to repeat the count
+  }
+  else  intr_count++; //incrementing c upto 63
+}
 
 ISR (INT0_vect)        // Interrupt service routine 
 {
-  estado_actual=estado_siguiente;
+    estado_actual = estado_siguiente;
+
 }
 
 ISR (INT1_vect)        // Interrupt service routine 
 {
-  estado_actual=estado_siguiente;
+    estado_actual = estado_siguiente;
+  
 }
 
 
 void time_delay(int n){
   unsigned int i=0; 
+
+  
   int valor = n*4386;
   if (n == 0)
   {
     valor = 2193;
   }
-  
+  TIFR|=(1<<TOV0);  
    while(i<=valor)
    { 
       while((TIFR & (1 << TOV0) )==0);  //Se espera a que contador llegue de 0 a 255
