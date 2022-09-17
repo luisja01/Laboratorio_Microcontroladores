@@ -54,7 +54,7 @@ int main(void)
   // Interrupciones 
   GIMSK |= (1<<INT0);  //  Habilitando interrupciones INT0 e INT1
   GIMSK |= (1<<INT1);
-  //MCUCR |= (1<<ISC00)|(1<<ISC01); 
+  MCUCR |= (1<<ISC00)|(1<<ISC01); 
 
 
   //Las entradas son PD2 y PD3, donde sus interrupciones son PCINT13 y PCINT14 respectivamente, o INT0 e INT1
