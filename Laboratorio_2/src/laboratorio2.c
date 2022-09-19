@@ -56,7 +56,6 @@ int main(void)
   GIMSK |= (1<<INT0);  //  Habilitando interrupciones INT0 e INT1
   GIMSK |= (1<<INT1);
   MCUCR |= (1<<ISC00)|(1<<ISC01); 
-  //TIMSK|=(1<<TOIE0); //se habilita interrupcion por timer 1
 
   sei(); //Se habilitan las interrupciones globales
   //Las entradas son PD2 y PD3, donde sus interrupciones son PCINT13 y PCINT14 respectivamente, o INT0 e INT1
@@ -133,24 +132,7 @@ void maquina_estados(){
 
 }
 
-/* Interrupcion por tiempo
-ISR (TIMER0_OVF_vect)      //Interrupt vector for Timer0
-{
-  if (intr_count==189) //waiting for 63 because to get 1 sec delay
-  {
-    cambio_estado = true;
-    intr_count=0; //making intr_count=0 to repeat the count
-  }
-  else  intr_count++; //incrementing c upto 63
 
-  if (contador==63) //waiting for 63 because to get 1 sec delay
-  {
-    segundos += 1;
-    contador=0; //making intr_count=0 to repeat the count
-  }
-  else  contador++; //incrementing c upto 63
-}
-*/
 ISR (INT0_vect)        // Interrupt service routine 
 {
     estado_actual = estado_siguiente;
@@ -163,7 +145,6 @@ ISR (INT1_vect)        // Interrupt service routine
     
   
 }
-
 
 void time_delay(int n){
   
