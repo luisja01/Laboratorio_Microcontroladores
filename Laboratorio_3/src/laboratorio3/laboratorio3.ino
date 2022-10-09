@@ -8,8 +8,10 @@ Pollotron3000
 #include <Adafruit_PCD8544.h>
 #include <Adafruit_GFX.h>
 #include <PID_v1.h>
+#include <math.h>
 
 #define HUMEDAD A3 //Pin analógico para la humedad
+#define RESISTENCIA 10000 //Pin analógico para la humedad
 #define CALENTADOR A5 //Pin analógico para circuito calentador
 #define TEMPERATURA A2 //Pin analógico para circuito calentador
 #define POT A4 //Pin analógico para circuito calentador
@@ -19,17 +21,23 @@ Adafruit_PCD8544 display = Adafruit_PCD8544(2, 3, 4, 5, 6);
 
 //Se definen todas las variables a utilizar
 double humedad;
-double error;
 double mapeo_humedad;
 double temp_sensada;
-double mapeo_temp;
+double resistencia;
+double mapeo_temp, mapeo_temp2;
 double temp_op;
-double mapeo_op;
+double mapeo_op, mapeo_op2;
 double salida_PID; 
 double mapeo_salida; 
-
+String label1 = "Humedad";
+String label2 = "Control";
+String label3 = "Temp_s";
+String label4 = "Temp_op";
+bool label = true;
+//Parametros de controlador
+double Kp = 3.25, Ki=0, Kd=0;
 //Definimos nuestro controlador PID utilizando la libreria PID_v1
-PID Pollometro(&error, &salida_PID, &mapeo_op, 2, 0, 0, DIRECT);
+PID Pollometro(&mapeo_temp, &salida_PID, &mapeo_op, Kp, Ki, Kd, DIRECT);
 void setup() {
 
   Serial.begin(9600); // Habilita los puertos de comunicación 
@@ -37,6 +45,7 @@ void setup() {
   // Configuración de pines para los LEDs
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
+  pinMode(9, INPUT);
   
   // Se activa el display
   display.begin();
@@ -45,41 +54,77 @@ void setup() {
   // Sensor humedad
   humedad = analogRead(HUMEDAD);
   mapeo_humedad = map(humedad, 0.0, 1023.0, 0.0, 100.0);
-  //  Sensor temperatura
+   //  Sensor temperatura
   temp_sensada = analogRead(TEMPERATURA);
+  //Primero se calcula la resistencia
+  //resistencia = RESISTENCIA*((1023/temp_sensada)-1);
+  //Ahora se calcula la temperatura
+  //temp_sensada = log(resistencia); 
+  //temp_sensada = 1 / (0.001129148 + (0.000234125 * temp_sensada) + (0.0000000876741 * temp_sensada * temp_sensada * temp_sensada));
+  //temp_sensada = temp_sensada -273.15;
   mapeo_temp = map(temp_sensada, 52.0, 759.0, 125.0, 0.0);
+  mapeo_temp2 = map(temp_sensada, 52.0, 759.0, 255.0, 0.0);
   //Potenciometro de operacion
   temp_op = analogRead(POT);
   mapeo_op = map(temp_op, 0.0, 1012.0, 30.0, 42.0);
-  error = mapeo_op - mapeo_temp;
-  Pollometro .SetMode(AUTOMATIC);
-
+  mapeo_op2 = map(temp_op, 0.0, 1012.0, 0.0, 255.0);
+  Pollometro.SetMode(AUTOMATIC);
+  Pollometro.SetTunings(Kp, Ki, Kd);
 }
 
 void loop() {
 
+  while (label){
+    Serial.print(label1);
+    Serial.print(",");
+    Serial.print(label2);
+    Serial.print(",");
+    Serial.print(label3);
+    Serial.print(",");
+    Serial.println(label4);
+    label = false;
+  }
   // Sensor humedad
   humedad = analogRead(HUMEDAD);
   mapeo_humedad = map(humedad, 0.0, 1023.0, 0.0, 100.0);
 
   //  Sensor temperatura
   temp_sensada = analogRead(TEMPERATURA);
-  mapeo_temp = map(temp_sensada, 52.0, 759.0, 125.0, 0.0);
+  //Primero se calcula la resistencia
+  //resistencia = RESISTENCIA*((1023/temp_sensada)-1);
+  //Ahora se calcula la temperatura
+  //temp_sensada = log(resistencia); 
+  //temp_sensada = 1 / (0.001129148 + (0.000234125 * temp_sensada) + (0.0000000876741 * temp_sensada * temp_sensada * temp_sensada));
+  //temp_sensada = temp_sensada -273.15;
+  mapeo_temp = map(temp_sensada, 52.0, 759.0, 50.0, 0.0);//es hasta 125
+  mapeo_temp2 = map(temp_sensada, 52.0, 759.0, 255.0, 0.0);
+
 
   //Potenciometro de operacion
   temp_op = analogRead(POT);
   mapeo_op = map(temp_op, 0.0, 1012.0, 30.0, 42.0);
-  error = mapeo_op - mapeo_temp;
+  mapeo_op2 = map(temp_op, 0.0, 1012.0, 0.0, 255.0);
+
   delay(100);
 
   //Aplica el control
   Pollometro.Compute();  
   mapeo_salida = map(salida_PID, 0.0, 255.0, 0.0, 80.0);
   analogWrite (CALENTADOR, salida_PID) ;
-  Serial.print(error);
   //Encender LEDs
-  digitalWrite(12, HIGH);
-  digitalWrite(13, HIGH);
+  if((mapeo_temp+mapeo_salida)<30){
+    digitalWrite(12, HIGH);
+    digitalWrite(13, LOW);
+  }
+  else if((mapeo_temp+mapeo_salida)>42){
+    digitalWrite(13, HIGH);
+    digitalWrite(12, LOW);
+  }
+
+  else{
+    digitalWrite(12, LOW);
+    digitalWrite(13, LOW);    
+  }
 
   // Código para imprimir información en pantalla LCD
   display.clearDisplay(); 
@@ -97,4 +142,14 @@ void loop() {
   display.print("Temp_op:"); // Se imprime la temperatura de operación elegida
   display.println((int)mapeo_op);
   display.display();
+
+  if(digitalRead(9)==HIGH){  
+    Serial.print((int)mapeo_humedad);
+    Serial.print(",");
+    Serial.print((int)mapeo_salida);
+    Serial.print(",");
+    Serial.print((int)mapeo_temp);
+    Serial.print(",");
+    Serial.println((int)mapeo_op);
+    }
 }
