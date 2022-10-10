@@ -12,9 +12,9 @@ Pollotron3000
 
 #define HUMEDAD A3 //Pin analógico para la humedad
 #define RESISTENCIA 10000 // Valor de resistencia
-#define CALENTADOR A5 //Pin analógico para circuito calentador
+#define CALENTADOR 10 //Pin analógico para circuito calentador
 #define TEMPERATURA A2 //Pin analógico para circuito calentador
-#define POT A4 //Pin analógico para circuito calentador
+#define POT A4 //Pin analógico para el potenciometro
 
 // Parámetros para ecuación de Steinhart-Hart
 #define A 8.2485E-4
@@ -121,11 +121,11 @@ void loop() {
   analogWrite (CALENTADOR, salida_PID) ;
 
   //Encender LEDs
-  if((temperatura)<30){
+  if(((int)temperatura+(int)mapeo_salida)<30){
     digitalWrite(12, HIGH);
     digitalWrite(13, LOW);
   }
-  else if((temperatura)>42){
+  else if(((int)temperatura+(int)mapeo_salida)>42){
     digitalWrite(13, HIGH);
     digitalWrite(12, LOW);
   }
