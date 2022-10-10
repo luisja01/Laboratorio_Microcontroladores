@@ -33,11 +33,6 @@ double mapeo_op, mapeo_op2;
 double salida_PID; 
 double mapeo_salida; 
 double temperatura; 
-String label1 = "Humedad";
-String label2 = "Control";
-String label3 = "Temp_s";
-String label4 = "Temp_op";
-bool label = true;
 
 //Parametros de controlador
 double Kp = 3.25, Ki=0, Kd=0;
@@ -83,16 +78,7 @@ void setup() {
 
 void loop() {
 
-  while (label){
-    Serial.print(label1);
-    Serial.print(",");
-    Serial.print(label2);
-    Serial.print(",");
-    Serial.print(label3);
-    Serial.print(",");
-    Serial.println(label4);
-    label = false;
-  }
+
   // Sensor humedad
   humedad = analogRead(HUMEDAD);
   mapeo_humedad = map(humedad, 0.0, 1023.0, 0.0, 100.0);
@@ -157,7 +143,7 @@ void loop() {
     Serial.print(",");
     Serial.print((int)mapeo_salida);
     Serial.print(",");
-    Serial.print((int)mapeo_temp);
+    Serial.print((int)temperatura);
     Serial.print(",");
     Serial.println((int)mapeo_op);
     }
