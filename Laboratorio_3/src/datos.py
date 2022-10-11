@@ -1,3 +1,12 @@
+'''Universidad de Costa Rica
+IE-0624 Laboratorio de Microcontroladores
+Prof: Marco Villalta Fallas
+Estudiantes: Juan Montealegre B95001 y Luis Herrera B93840
+Laboratorio 3
+Simulador de Incubadora de huevos
+Ciclo: II-2022
+'''
+#Se importan las librerias
 import serial 
 import csv 
 from time import sleep
