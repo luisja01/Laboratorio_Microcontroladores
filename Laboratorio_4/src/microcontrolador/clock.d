@@ -15,4 +15,14 @@ clock.o: clock.c \
  /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/dispatch/nvic.h \
  /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/f4/nvic.h \
  /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/cm3/systick.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/gpio.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/f4/gpio.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/gpio_common_f24.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/gpio_common_f234.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/usart.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/f4/usart.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/usart_common_f24.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/usart_common_f124.h \
+ /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/include/libopencm3/stm32/common/usart_common_all.h \
  clock.h

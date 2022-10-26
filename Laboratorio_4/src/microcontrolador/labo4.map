@@ -67,6 +67,12 @@ Discarded input sections
  .group         0x0000000000000000        0xc clock.o
  .group         0x0000000000000000        0xc clock.o
  .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
+ .group         0x0000000000000000        0xc clock.o
  .text          0x0000000000000000        0x0 clock.o
  .data          0x0000000000000000        0x0 clock.o
  .bss           0x0000000000000000        0x0 clock.o
@@ -81,6 +87,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e clock.o
  .debug_macro   0x0000000000000000       0x28 clock.o
  .debug_macro   0x0000000000000000      0xcea clock.o
+ .debug_macro   0x0000000000000000       0x76 clock.o
+ .debug_macro   0x0000000000000000      0x37e clock.o
+ .debug_macro   0x0000000000000000       0xca clock.o
  .group         0x0000000000000000        0xc console.o
  .group         0x0000000000000000        0xc console.o
  .group         0x0000000000000000        0xc console.o
@@ -131,6 +140,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e console.o
  .debug_macro   0x0000000000000000       0x28 console.o
  .debug_macro   0x0000000000000000      0xcea console.o
+ .debug_macro   0x0000000000000000       0x94 console.o
+ .debug_macro   0x0000000000000000      0x29e console.o
+ .debug_macro   0x0000000000000000       0xa0 console.o
  .debug_macro   0x0000000000000000       0x6e console.o
  .debug_macro   0x0000000000000000      0x22c console.o
  .group         0x0000000000000000        0xc lcd-spi.o
@@ -262,6 +274,20 @@ Discarded input sections
  .group         0x0000000000000000        0xc labo4.o
  .group         0x0000000000000000        0xc labo4.o
  .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
+ .group         0x0000000000000000        0xc labo4.o
  .text          0x0000000000000000        0x0 labo4.o
  .data          0x0000000000000000        0x0 labo4.o
  .bss           0x0000000000000000        0x0 labo4.o
@@ -286,6 +312,20 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 labo4.o
  .debug_macro   0x0000000000000000       0x76 labo4.o
  .debug_macro   0x0000000000000000       0x58 labo4.o
+ .debug_macro   0x0000000000000000       0x1c labo4.o
+ .debug_macro   0x0000000000000000       0x22 labo4.o
+ .debug_macro   0x0000000000000000       0xe8 labo4.o
+ .debug_macro   0x0000000000000000       0x76 labo4.o
+ .debug_macro   0x0000000000000000      0x280 labo4.o
+ .debug_macro   0x0000000000000000       0x8e labo4.o
+ .debug_macro   0x0000000000000000       0x28 labo4.o
+ .debug_macro   0x0000000000000000      0xcea labo4.o
+ .debug_macro   0x0000000000000000       0x76 labo4.o
+ .debug_macro   0x0000000000000000      0x37e labo4.o
+ .debug_macro   0x0000000000000000       0xca labo4.o
+ .debug_macro   0x0000000000000000       0x94 labo4.o
+ .debug_macro   0x0000000000000000      0x29e labo4.o
+ .debug_macro   0x0000000000000000       0xa0 labo4.o
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
@@ -647,8 +687,6 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
  .text.usart_disable
                 0x0000000000000000        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .text.usart_send_blocking
-                0x0000000000000000       0x16 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
  .text.usart_recv_blocking
                 0x0000000000000000       0x12 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
  .text.usart_enable_rx_dma
@@ -706,23 +744,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .data          0x0000000000000000        0x0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .bss           0x0000000000000000        0x0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .text.usart_send
-                0x0000000000000000        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .text.usart_recv
-                0x0000000000000000        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .text.usart_wait_send_ready
                 0x0000000000000000        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .text.usart_wait_recv_ready
                 0x0000000000000000        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .text.usart_get_flag
                 0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_info    0x0000000000000000      0x30c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_abbrev  0x0000000000000000      0x121 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_loc     0x0000000000000000       0x99 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_aranges
-                0x0000000000000000       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_ranges  0x0000000000000000       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_macro   0x0000000000000000       0xc2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_macro   0x0000000000000000      0xa90 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_macro   0x0000000000000000       0x1c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_macro   0x0000000000000000      0x34e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
@@ -736,12 +763,6 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_macro   0x0000000000000000       0x28 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_macro   0x0000000000000000      0xcea /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_line    0x0000000000000000      0x29c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_str     0x0000000000000000     0x9f3b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .comment       0x0000000000000000       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .debug_frame   0x0000000000000000       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
- .ARM.attributes
-                0x0000000000000000       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
  .group         0x0000000000000000        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
@@ -992,7 +1013,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/8.3.1/../../../arm-none-eabi/lib/thumb/v7e-m+fp/
 LOAD /usr/lib/gcc/arm-none-eabi/8.3.1/../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a
 END GROUP
 
-.text           0x0000000008000000     0x17f4
+.text           0x0000000008000000     0x1934
  *(.vectors)
  .vectors       0x0000000008000000      0x1ac /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
                 0x0000000008000000                vector_table
@@ -1006,393 +1027,402 @@ END GROUP
  .text.msleep   0x00000000080002b4       0x14 clock.o
                 0x00000000080002b4                msleep
  .text.clock_setup
-                0x00000000080002c8       0x28 clock.o
+                0x00000000080002c8       0x40 clock.o
                 0x00000000080002c8                clock_setup
  .text.usart1_isr
-                0x00000000080002f0       0x58 console.o
-                0x00000000080002f0                usart1_isr
+                0x0000000008000308       0x58 console.o
+                0x0000000008000308                usart1_isr
  .text.console_putc
-                0x0000000008000348       0x18 console.o
-                0x0000000008000348                console_putc
+                0x0000000008000360       0x18 console.o
+                0x0000000008000360                console_putc
  .text.console_puts
-                0x0000000008000360       0x1e console.o
-                0x0000000008000360                console_puts
- *fill*         0x000000000800037e        0x2 
+                0x0000000008000378       0x1e console.o
+                0x0000000008000378                console_puts
+ *fill*         0x0000000008000396        0x2 
  .text.console_setup
-                0x0000000008000380       0x80 console.o
-                0x0000000008000380                console_setup
+                0x0000000008000398       0x80 console.o
+                0x0000000008000398                console_setup
  .text.lcd_command
-                0x0000000008000400       0x64 lcd-spi.o
+                0x0000000008000418       0x64 lcd-spi.o
  .text.print_hex
-                0x0000000008000464       0x4c lcd-spi.o
+                0x000000000800047c       0x4c lcd-spi.o
  .text.lcd_draw_pixel
-                0x00000000080004b0       0x14 lcd-spi.o
-                0x00000000080004b0                lcd_draw_pixel
+                0x00000000080004c8       0x14 lcd-spi.o
+                0x00000000080004c8                lcd_draw_pixel
  .text.lcd_show_frame
-                0x00000000080004c4       0x50 lcd-spi.o
-                0x00000000080004c4                lcd_show_frame
+                0x00000000080004dc       0x50 lcd-spi.o
+                0x00000000080004dc                lcd_show_frame
  .text.lcd_spi_init
-                0x0000000008000514      0x1b4 lcd-spi.o
-                0x0000000008000514                lcd_spi_init
+                0x000000000800052c      0x1b4 lcd-spi.o
+                0x000000000800052c                lcd_spi_init
  .text.gfx_drawPixel
-                0x00000000080006c8       0x2c gfx.o
-                0x00000000080006c8                gfx_drawPixel
+                0x00000000080006e0       0x2c gfx.o
+                0x00000000080006e0                gfx_drawPixel
  .text.gfx_init
-                0x00000000080006f4       0x20 gfx.o
-                0x00000000080006f4                gfx_init
+                0x000000000800070c       0x20 gfx.o
+                0x000000000800070c                gfx_init
  .text.gfx_drawLine
-                0x0000000008000714       0xb6 gfx.o
-                0x0000000008000714                gfx_drawLine
+                0x000000000800072c       0xb6 gfx.o
+                0x000000000800072c                gfx_drawLine
  .text.gfx_drawFastVLine
-                0x00000000080007ca       0x16 gfx.o
-                0x00000000080007ca                gfx_drawFastVLine
+                0x00000000080007e2       0x16 gfx.o
+                0x00000000080007e2                gfx_drawFastVLine
  .text.gfx_fillRect
-                0x00000000080007e0       0x2a gfx.o
-                0x00000000080007e0                gfx_fillRect
- *fill*         0x000000000800080a        0x2 
+                0x00000000080007f8       0x2a gfx.o
+                0x00000000080007f8                gfx_fillRect
+ *fill*         0x0000000008000822        0x2 
  .text.gfx_fillScreen
-                0x000000000800080c       0x20 gfx.o
-                0x000000000800080c                gfx_fillScreen
+                0x0000000008000824       0x20 gfx.o
+                0x0000000008000824                gfx_fillScreen
  .text.gfx_drawChar
-                0x000000000800082c       0xdc gfx.o
-                0x000000000800082c                gfx_drawChar
+                0x0000000008000844       0xdc gfx.o
+                0x0000000008000844                gfx_drawChar
  .text.gfx_write
-                0x0000000008000908       0x74 gfx.o
-                0x0000000008000908                gfx_write
+                0x0000000008000920       0x74 gfx.o
+                0x0000000008000920                gfx_write
  .text.gfx_puts
-                0x000000000800097c       0x12 gfx.o
-                0x000000000800097c                gfx_puts
- *fill*         0x000000000800098e        0x2 
+                0x0000000008000994       0x12 gfx.o
+                0x0000000008000994                gfx_puts
+ *fill*         0x00000000080009a6        0x2 
  .text.gfx_setCursor
-                0x0000000008000990        0xc gfx.o
-                0x0000000008000990                gfx_setCursor
+                0x00000000080009a8        0xc gfx.o
+                0x00000000080009a8                gfx_setCursor
  .text.gfx_setTextSize
-                0x000000000800099c       0x10 gfx.o
-                0x000000000800099c                gfx_setTextSize
+                0x00000000080009b4       0x10 gfx.o
+                0x00000000080009b4                gfx_setTextSize
  .text.gfx_setTextColor
-                0x00000000080009ac        0xc gfx.o
-                0x00000000080009ac                gfx_setTextColor
+                0x00000000080009c4        0xc gfx.o
+                0x00000000080009c4                gfx_setTextColor
  .text.startup.main
-                0x00000000080009b8       0xfc labo4.o
-                0x00000000080009b8                main
+                0x00000000080009d0      0x1fc labo4.o
+                0x00000000080009d0                main
  .text.sdram_timing
-                0x0000000008000ab4       0x4e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
-                0x0000000008000ab4                sdram_timing
- *fill*         0x0000000008000b02        0x2 
+                0x0000000008000bcc       0x4e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+                0x0000000008000bcc                sdram_timing
+ *fill*         0x0000000008000c1a        0x2 
  .text.sdram_command
-                0x0000000008000b04       0x64 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
-                0x0000000008000b04                sdram_command
+                0x0000000008000c1c       0x64 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+                0x0000000008000c1c                sdram_command
  .text.gpio_set
-                0x0000000008000b68        0x4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
-                0x0000000008000b68                gpio_set
+                0x0000000008000c80        0x4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+                0x0000000008000c80                gpio_set
  .text.gpio_clear
-                0x0000000008000b6c        0x6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
-                0x0000000008000b6c                gpio_clear
+                0x0000000008000c84        0x6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+                0x0000000008000c84                gpio_clear
  .text.gpio_mode_setup
-                0x0000000008000b72       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
-                0x0000000008000b72                gpio_mode_setup
+                0x0000000008000c8a       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+                0x0000000008000c8a                gpio_mode_setup
  .text.gpio_set_output_options
-                0x0000000008000bb6       0x36 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
-                0x0000000008000bb6                gpio_set_output_options
+                0x0000000008000cce       0x36 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+                0x0000000008000cce                gpio_set_output_options
  .text.gpio_set_af
-                0x0000000008000bec       0x54 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
-                0x0000000008000bec                gpio_set_af
+                0x0000000008000d04       0x54 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+                0x0000000008000d04                gpio_set_af
  .text.rcc_periph_clock_enable
-                0x0000000008000c40       0x1a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
-                0x0000000008000c40                rcc_periph_clock_enable
- *fill*         0x0000000008000c5a        0x2 
+                0x0000000008000d58       0x1a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+                0x0000000008000d58                rcc_periph_clock_enable
+ *fill*         0x0000000008000d72        0x2 
  .text.rcc_is_osc_ready
-                0x0000000008000c5c       0x5c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000c5c                rcc_is_osc_ready
+                0x0000000008000d74       0x5c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000d74                rcc_is_osc_ready
  .text.rcc_wait_for_osc_ready
-                0x0000000008000cb8       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000cb8                rcc_wait_for_osc_ready
+                0x0000000008000dd0       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000dd0                rcc_wait_for_osc_ready
  .text.rcc_osc_on
-                0x0000000008000cc8       0x58 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000cc8                rcc_osc_on
+                0x0000000008000de0       0x58 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000de0                rcc_osc_on
  .text.rcc_osc_off
-                0x0000000008000d20       0x58 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000d20                rcc_osc_off
+                0x0000000008000e38       0x58 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000e38                rcc_osc_off
  .text.rcc_set_sysclk_source
-                0x0000000008000d78       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000d78                rcc_set_sysclk_source
+                0x0000000008000e90       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000e90                rcc_set_sysclk_source
  .text.rcc_set_ppre2
-                0x0000000008000d8c       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000d8c                rcc_set_ppre2
+                0x0000000008000ea4       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000ea4                rcc_set_ppre2
  .text.rcc_set_ppre1
-                0x0000000008000da0       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000da0                rcc_set_ppre1
+                0x0000000008000eb8       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000eb8                rcc_set_ppre1
  .text.rcc_set_hpre
-                0x0000000008000db4       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000db4                rcc_set_hpre
+                0x0000000008000ecc       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000ecc                rcc_set_hpre
  .text.rcc_set_main_pll_hsi
-                0x0000000008000dc8       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000dc8                rcc_set_main_pll_hsi
+                0x0000000008000ee0       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000ee0                rcc_set_main_pll_hsi
  .text.rcc_set_main_pll_hse
-                0x0000000008000e0c       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000e0c                rcc_set_main_pll_hse
+                0x0000000008000f24       0x44 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000f24                rcc_set_main_pll_hse
  .text.rcc_clock_setup_pll
-                0x0000000008000e50       0xf4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x0000000008000e50                rcc_clock_setup_pll
+                0x0000000008000f68       0xf4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x0000000008000f68                rcc_clock_setup_pll
  .text.spi_enable
-                0x0000000008000f44        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
-                0x0000000008000f44                spi_enable
+                0x000000000800105c        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+                0x000000000800105c                spi_enable
  .text.spi_xfer
-                0x0000000008000f4e        0xe /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
-                0x0000000008000f4e                spi_xfer
+                0x0000000008001066        0xe /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+                0x0000000008001066                spi_xfer
  .text.spi_enable_ss_output
-                0x0000000008000f5c        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
-                0x0000000008000f5c                spi_enable_ss_output
+                0x0000000008001074        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+                0x0000000008001074                spi_enable_ss_output
  .text.spi_init_master
-                0x0000000008000f66       0x28 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
-                0x0000000008000f66                spi_init_master
- *fill*         0x0000000008000f8e        0x2 
+                0x000000000800107e       0x28 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+                0x000000000800107e                spi_init_master
+ *fill*         0x00000000080010a6        0x2 
  .text.usart_set_baudrate
-                0x0000000008000f90       0x2c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000f90                usart_set_baudrate
+                0x00000000080010a8       0x2c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x00000000080010a8                usart_set_baudrate
  .text.usart_set_databits
-                0x0000000008000fbc       0x12 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000fbc                usart_set_databits
+                0x00000000080010d4       0x12 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x00000000080010d4                usart_set_databits
  .text.usart_set_stopbits
-                0x0000000008000fce        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000fce                usart_set_stopbits
+                0x00000000080010e6        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x00000000080010e6                usart_set_stopbits
  .text.usart_set_parity
-                0x0000000008000fda        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000fda                usart_set_parity
+                0x00000000080010f2        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x00000000080010f2                usart_set_parity
  .text.usart_set_mode
-                0x0000000008000fe6        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000fe6                usart_set_mode
+                0x00000000080010fe        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x00000000080010fe                usart_set_mode
  .text.usart_set_flow_control
-                0x0000000008000ff2        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000ff2                usart_set_flow_control
+                0x000000000800110a        0xc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x000000000800110a                usart_set_flow_control
  .text.usart_enable
-                0x0000000008000ffe        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008000ffe                usart_enable
+                0x0000000008001116        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x0000000008001116                usart_enable
+ .text.usart_send_blocking
+                0x0000000008001120       0x16 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x0000000008001120                usart_send_blocking
  .text.usart_enable_rx_interrupt
-                0x0000000008001008        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
-                0x0000000008001008                usart_enable_rx_interrupt
+                0x0000000008001136        0xa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                0x0000000008001136                usart_enable_rx_interrupt
+ .text.usart_send
+                0x0000000008001140        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+                0x0000000008001140                usart_send
+ .text.usart_wait_send_ready
+                0x0000000008001148        0x8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+                0x0000000008001148                usart_wait_send_ready
  .text.blocking_handler
-                0x0000000008001012        0x2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
-                0x0000000008001012                dma2_stream1_isr
-                0x0000000008001012                tim8_brk_tim12_isr
-                0x0000000008001012                dma1_stream7_isr
-                0x0000000008001012                usart3_isr
-                0x0000000008001012                tim7_isr
-                0x0000000008001012                dma2d_isr
-                0x0000000008001012                uart8_isr
-                0x0000000008001012                dma1_stream2_isr
-                0x0000000008001012                otg_hs_isr
-                0x0000000008001012                blocking_handler
-                0x0000000008001012                tim5_isr
-                0x0000000008001012                rtc_wkup_isr
-                0x0000000008001012                otg_fs_isr
-                0x0000000008001012                spi1_isr
-                0x0000000008001012                i2c3_er_isr
-                0x0000000008001012                exti2_isr
-                0x0000000008001012                spi5_isr
-                0x0000000008001012                usb_fs_wkup_isr
-                0x0000000008001012                tamp_stamp_isr
-                0x0000000008001012                can1_rx1_isr
-                0x0000000008001012                dma2_stream0_isr
-                0x0000000008001012                i2c3_ev_isr
-                0x0000000008001012                usage_fault_handler
-                0x0000000008001012                can2_rx0_isr
-                0x0000000008001012                dma1_stream6_isr
-                0x0000000008001012                can2_rx1_isr
-                0x0000000008001012                can1_sce_isr
-                0x0000000008001012                tim1_cc_isr
-                0x0000000008001012                can1_tx_isr
-                0x0000000008001012                tim1_up_tim10_isr
-                0x0000000008001012                sdio_isr
-                0x0000000008001012                eth_isr
-                0x0000000008001012                spi6_isr
-                0x0000000008001012                dma2_stream5_isr
-                0x0000000008001012                pvd_isr
-                0x0000000008001012                can1_rx0_isr
-                0x0000000008001012                rcc_isr
-                0x0000000008001012                dma2_stream3_isr
-                0x0000000008001012                flash_isr
-                0x0000000008001012                uart4_isr
-                0x0000000008001012                lcd_tft_isr
-                0x0000000008001012                rtc_alarm_isr
-                0x0000000008001012                exti15_10_isr
-                0x0000000008001012                hash_rng_isr
-                0x0000000008001012                tim1_trg_com_tim11_isr
-                0x0000000008001012                hard_fault_handler
-                0x0000000008001012                exti1_isr
-                0x0000000008001012                i2c1_ev_isr
-                0x0000000008001012                usart6_isr
-                0x0000000008001012                spi2_isr
-                0x0000000008001012                cryp_isr
-                0x0000000008001012                nvic_wwdg_isr
-                0x0000000008001012                dma1_stream1_isr
-                0x0000000008001012                dma2_stream4_isr
-                0x0000000008001012                exti3_isr
-                0x0000000008001012                tim3_isr
-                0x0000000008001012                usart2_isr
-                0x0000000008001012                sai1_isr
-                0x0000000008001012                fpu_isr
-                0x0000000008001012                dma1_stream4_isr
-                0x0000000008001012                i2c2_er_isr
-                0x0000000008001012                i2c2_ev_isr
-                0x0000000008001012                uart5_isr
-                0x0000000008001012                dma2_stream6_isr
-                0x0000000008001012                spi4_isr
-                0x0000000008001012                adc_isr
-                0x0000000008001012                dma2_stream7_isr
-                0x0000000008001012                tim8_up_tim13_isr
-                0x0000000008001012                fsmc_isr
-                0x0000000008001012                exti4_isr
-                0x0000000008001012                tim6_dac_isr
-                0x0000000008001012                dma1_stream3_isr
-                0x0000000008001012                tim8_trg_com_tim14_isr
-                0x0000000008001012                mem_manage_handler
-                0x0000000008001012                lcd_tft_err_isr
-                0x0000000008001012                can2_tx_isr
-                0x0000000008001012                exti9_5_isr
-                0x0000000008001012                tim1_brk_tim9_isr
-                0x0000000008001012                uart7_isr
-                0x0000000008001012                can2_sce_isr
-                0x0000000008001012                tim4_isr
-                0x0000000008001012                otg_hs_wkup_isr
-                0x0000000008001012                i2c1_er_isr
-                0x0000000008001012                dma1_stream0_isr
-                0x0000000008001012                tim8_cc_isr
-                0x0000000008001012                dcmi_isr
-                0x0000000008001012                dma2_stream2_isr
-                0x0000000008001012                eth_wkup_isr
-                0x0000000008001012                bus_fault_handler
-                0x0000000008001012                otg_hs_ep1_out_isr
-                0x0000000008001012                spi3_isr
-                0x0000000008001012                dma1_stream5_isr
-                0x0000000008001012                otg_hs_ep1_in_isr
-                0x0000000008001012                tim2_isr
-                0x0000000008001012                exti0_isr
+                0x0000000008001150        0x2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+                0x0000000008001150                dma2_stream1_isr
+                0x0000000008001150                tim8_brk_tim12_isr
+                0x0000000008001150                dma1_stream7_isr
+                0x0000000008001150                usart3_isr
+                0x0000000008001150                tim7_isr
+                0x0000000008001150                dma2d_isr
+                0x0000000008001150                uart8_isr
+                0x0000000008001150                dma1_stream2_isr
+                0x0000000008001150                otg_hs_isr
+                0x0000000008001150                blocking_handler
+                0x0000000008001150                tim5_isr
+                0x0000000008001150                rtc_wkup_isr
+                0x0000000008001150                otg_fs_isr
+                0x0000000008001150                spi1_isr
+                0x0000000008001150                i2c3_er_isr
+                0x0000000008001150                exti2_isr
+                0x0000000008001150                spi5_isr
+                0x0000000008001150                usb_fs_wkup_isr
+                0x0000000008001150                tamp_stamp_isr
+                0x0000000008001150                can1_rx1_isr
+                0x0000000008001150                dma2_stream0_isr
+                0x0000000008001150                i2c3_ev_isr
+                0x0000000008001150                usage_fault_handler
+                0x0000000008001150                can2_rx0_isr
+                0x0000000008001150                dma1_stream6_isr
+                0x0000000008001150                can2_rx1_isr
+                0x0000000008001150                can1_sce_isr
+                0x0000000008001150                tim1_cc_isr
+                0x0000000008001150                can1_tx_isr
+                0x0000000008001150                tim1_up_tim10_isr
+                0x0000000008001150                sdio_isr
+                0x0000000008001150                eth_isr
+                0x0000000008001150                spi6_isr
+                0x0000000008001150                dma2_stream5_isr
+                0x0000000008001150                pvd_isr
+                0x0000000008001150                can1_rx0_isr
+                0x0000000008001150                rcc_isr
+                0x0000000008001150                dma2_stream3_isr
+                0x0000000008001150                flash_isr
+                0x0000000008001150                uart4_isr
+                0x0000000008001150                lcd_tft_isr
+                0x0000000008001150                rtc_alarm_isr
+                0x0000000008001150                exti15_10_isr
+                0x0000000008001150                hash_rng_isr
+                0x0000000008001150                tim1_trg_com_tim11_isr
+                0x0000000008001150                hard_fault_handler
+                0x0000000008001150                exti1_isr
+                0x0000000008001150                i2c1_ev_isr
+                0x0000000008001150                usart6_isr
+                0x0000000008001150                spi2_isr
+                0x0000000008001150                cryp_isr
+                0x0000000008001150                nvic_wwdg_isr
+                0x0000000008001150                dma1_stream1_isr
+                0x0000000008001150                dma2_stream4_isr
+                0x0000000008001150                exti3_isr
+                0x0000000008001150                tim3_isr
+                0x0000000008001150                usart2_isr
+                0x0000000008001150                sai1_isr
+                0x0000000008001150                fpu_isr
+                0x0000000008001150                dma1_stream4_isr
+                0x0000000008001150                i2c2_er_isr
+                0x0000000008001150                i2c2_ev_isr
+                0x0000000008001150                uart5_isr
+                0x0000000008001150                dma2_stream6_isr
+                0x0000000008001150                spi4_isr
+                0x0000000008001150                adc_isr
+                0x0000000008001150                dma2_stream7_isr
+                0x0000000008001150                tim8_up_tim13_isr
+                0x0000000008001150                fsmc_isr
+                0x0000000008001150                exti4_isr
+                0x0000000008001150                tim6_dac_isr
+                0x0000000008001150                dma1_stream3_isr
+                0x0000000008001150                tim8_trg_com_tim14_isr
+                0x0000000008001150                mem_manage_handler
+                0x0000000008001150                lcd_tft_err_isr
+                0x0000000008001150                can2_tx_isr
+                0x0000000008001150                exti9_5_isr
+                0x0000000008001150                tim1_brk_tim9_isr
+                0x0000000008001150                uart7_isr
+                0x0000000008001150                can2_sce_isr
+                0x0000000008001150                tim4_isr
+                0x0000000008001150                otg_hs_wkup_isr
+                0x0000000008001150                i2c1_er_isr
+                0x0000000008001150                dma1_stream0_isr
+                0x0000000008001150                tim8_cc_isr
+                0x0000000008001150                dcmi_isr
+                0x0000000008001150                dma2_stream2_isr
+                0x0000000008001150                eth_wkup_isr
+                0x0000000008001150                bus_fault_handler
+                0x0000000008001150                otg_hs_ep1_out_isr
+                0x0000000008001150                spi3_isr
+                0x0000000008001150                dma1_stream5_isr
+                0x0000000008001150                otg_hs_ep1_in_isr
+                0x0000000008001150                tim2_isr
+                0x0000000008001150                exti0_isr
  .text.null_handler
-                0x0000000008001014        0x2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
-                0x0000000008001014                null_handler
-                0x0000000008001014                sv_call_handler
-                0x0000000008001014                pend_sv_handler
-                0x0000000008001014                debug_monitor_handler
-                0x0000000008001014                nmi_handler
- *fill*         0x0000000008001016        0x2 
+                0x0000000008001152        0x2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+                0x0000000008001152                null_handler
+                0x0000000008001152                sv_call_handler
+                0x0000000008001152                pend_sv_handler
+                0x0000000008001152                debug_monitor_handler
+                0x0000000008001152                nmi_handler
  .text.reset_handler
-                0x0000000008001018       0x98 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
-                0x0000000008001018                reset_handler
+                0x0000000008001154       0x98 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+                0x0000000008001154                reset_handler
  .text.systick_set_reload
-                0x00000000080010b0       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
-                0x00000000080010b0                systick_set_reload
+                0x00000000080011ec       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x00000000080011ec                systick_set_reload
  .text.systick_set_clocksource
-                0x00000000080010c0       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
-                0x00000000080010c0                systick_set_clocksource
+                0x00000000080011fc       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x00000000080011fc                systick_set_clocksource
  .text.systick_interrupt_enable
-                0x00000000080010d8       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
-                0x00000000080010d8                systick_interrupt_enable
+                0x0000000008001214       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x0000000008001214                systick_interrupt_enable
  .text.systick_counter_enable
-                0x00000000080010e8       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
-                0x00000000080010e8                systick_counter_enable
+                0x0000000008001224       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x0000000008001224                systick_counter_enable
  .text.scb_reset_system
-                0x00000000080010f8       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
-                0x00000000080010f8                scb_reset_system
+                0x0000000008001234       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+                0x0000000008001234                scb_reset_system
  .text.nvic_enable_irq
-                0x0000000008001108       0x1c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
-                0x0000000008001108                nvic_enable_irq
+                0x0000000008001244       0x1c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+                0x0000000008001244                nvic_enable_irq
  .text.flash_set_ws
-                0x0000000008001124       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
-                0x0000000008001124                flash_set_ws
+                0x0000000008001260       0x14 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+                0x0000000008001260                flash_set_ws
  .text.flash_dcache_enable
-                0x0000000008001138       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
-                0x0000000008001138                flash_dcache_enable
+                0x0000000008001274       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x0000000008001274                flash_dcache_enable
  .text.flash_dcache_disable
-                0x0000000008001148       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
-                0x0000000008001148                flash_dcache_disable
+                0x0000000008001284       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x0000000008001284                flash_dcache_disable
  .text.flash_icache_enable
-                0x0000000008001158       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
-                0x0000000008001158                flash_icache_enable
+                0x0000000008001294       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x0000000008001294                flash_icache_enable
  .text.flash_icache_disable
-                0x0000000008001168       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
-                0x0000000008001168                flash_icache_disable
+                0x00000000080012a4       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x00000000080012a4                flash_icache_disable
  .text.pwr_set_vos_scale
-                0x0000000008001178       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
-                0x0000000008001178                pwr_set_vos_scale
-                0x0000000008001190                . = ALIGN (0x4)
+                0x00000000080012b4       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+                0x00000000080012b4                pwr_set_vos_scale
+                0x00000000080012cc                . = ALIGN (0x4)
  *(.rodata*)
  .rodata.sdram_pins
-                0x0000000008001190       0x30 sdram.o
+                0x00000000080012cc       0x30 sdram.o
  .rodata.cmd_args
-                0x00000000080011c0       0x3a lcd-spi.o
+                0x00000000080012fc       0x3a lcd-spi.o
  .rodata.initialization
-                0x00000000080011fa       0x50 lcd-spi.o
-                0x00000000080011fa                initialization
+                0x0000000008001336       0x50 lcd-spi.o
+                0x0000000008001336                initialization
  .rodata.lcd_spi_init.str1.1
-                0x000000000800124a       0x62 lcd-spi.o
+                0x0000000008001386       0x62 lcd-spi.o
  .rodata.print_hex.str1.1
-                0x00000000080012ac        0x3 lcd-spi.o
+                0x00000000080013e8        0x3 lcd-spi.o
  .rodata.mcm_font
-                0x00000000080012af      0x480 gfx.o
+                0x00000000080013eb      0x480 gfx.o
  .rodata.main.str1.1
-                0x000000000800172f       0x6c labo4.o
+                0x000000000800186b       0x6f labo4.o
+                                         0x71 (size before relaxing)
  .rodata.CSWTCH.0
-                0x000000000800179b        0x3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- *fill*         0x000000000800179e        0x2 
+                0x00000000080018da        0x3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ *fill*         0x00000000080018dd        0x3 
  .rodata.rcc_hse_8mhz_3v3
-                0x00000000080017a0       0x54 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
-                0x00000000080017a0                rcc_hse_8mhz_3v3
-                0x00000000080017f4                . = ALIGN (0x4)
+                0x00000000080018e0       0x54 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+                0x00000000080018e0                rcc_hse_8mhz_3v3
+                0x0000000008001934                . = ALIGN (0x4)
 
-.glue_7         0x00000000080017f4        0x0
- .glue_7        0x00000000080017f4        0x0 linker stubs
+.glue_7         0x0000000008001934        0x0
+ .glue_7        0x0000000008001934        0x0 linker stubs
 
-.glue_7t        0x00000000080017f4        0x0
- .glue_7t       0x00000000080017f4        0x0 linker stubs
+.glue_7t        0x0000000008001934        0x0
+ .glue_7t       0x0000000008001934        0x0 linker stubs
 
-.vfp11_veneer   0x00000000080017f4        0x0
- .vfp11_veneer  0x00000000080017f4        0x0 linker stubs
+.vfp11_veneer   0x0000000008001934        0x0
+ .vfp11_veneer  0x0000000008001934        0x0 linker stubs
 
-.v4_bx          0x00000000080017f4        0x0
- .v4_bx         0x00000000080017f4        0x0 linker stubs
+.v4_bx          0x0000000008001934        0x0
+ .v4_bx         0x0000000008001934        0x0 linker stubs
 
-.iplt           0x00000000080017f4        0x0
- .iplt          0x00000000080017f4        0x0 sdram.o
+.iplt           0x0000000008001934        0x0
+ .iplt          0x0000000008001934        0x0 sdram.o
 
-.rel.dyn        0x00000000080017f4        0x0
- .rel.iplt      0x00000000080017f4        0x0 sdram.o
+.rel.dyn        0x0000000008001934        0x0
+ .rel.iplt      0x0000000008001934        0x0 sdram.o
 
-.preinit_array  0x00000000080017f4        0x0
-                0x00000000080017f4                . = ALIGN (0x4)
-                0x00000000080017f4                __preinit_array_start = .
+.preinit_array  0x0000000008001934        0x0
+                0x0000000008001934                . = ALIGN (0x4)
+                0x0000000008001934                __preinit_array_start = .
  *(.preinit_array)
-                0x00000000080017f4                __preinit_array_end = .
+                0x0000000008001934                __preinit_array_end = .
 
-.init_array     0x00000000080017f4        0x0
-                0x00000000080017f4                . = ALIGN (0x4)
-                0x00000000080017f4                __init_array_start = .
+.init_array     0x0000000008001934        0x0
+                0x0000000008001934                . = ALIGN (0x4)
+                0x0000000008001934                __init_array_start = .
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
-                0x00000000080017f4                __init_array_end = .
+                0x0000000008001934                __init_array_end = .
 
-.fini_array     0x00000000080017f4        0x0
-                0x00000000080017f4                . = ALIGN (0x4)
-                0x00000000080017f4                __fini_array_start = .
+.fini_array     0x0000000008001934        0x0
+                0x0000000008001934                . = ALIGN (0x4)
+                0x0000000008001934                __fini_array_start = .
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x00000000080017f4                __fini_array_end = .
+                0x0000000008001934                __fini_array_end = .
 
 .ARM.extab
  *(.ARM.extab*)
 
-.ARM.exidx      0x00000000080017f4        0x0
-                0x00000000080017f4                __exidx_start = .
+.ARM.exidx      0x0000000008001934        0x0
+                0x0000000008001934                __exidx_start = .
  *(.ARM.exidx*)
-                0x00000000080017f4                __exidx_end = .
-                0x00000000080017f4                . = ALIGN (0x4)
-                0x00000000080017f4                _etext = .
+                0x0000000008001934                __exidx_end = .
+                0x0000000008001934                . = ALIGN (0x4)
+                0x0000000008001934                _etext = .
 
 .noinit
  *(.noinit*)
-                0x00000000080017f4                . = ALIGN (0x4)
+                0x0000000008001934                . = ALIGN (0x4)
 
-.data           0x0000000020000000       0x28 load address 0x00000000080017f4
+.data           0x0000000020000000       0x28 load address 0x0000000008001934
                 0x0000000020000000                _data = .
  *(.data*)
  .data.timing   0x0000000020000000       0x1c sdram.o
@@ -1408,12 +1438,12 @@ END GROUP
  *(.ramtext*)
                 0x0000000020000028                . = ALIGN (0x4)
                 0x0000000020000028                _edata = .
-                0x00000000080017f4                _data_loadaddr = LOADADDR (.data)
+                0x0000000008001934                _data_loadaddr = LOADADDR (.data)
 
-.igot.plt       0x0000000020000028        0x0 load address 0x000000000800181c
+.igot.plt       0x0000000020000028        0x0 load address 0x000000000800195c
  .igot.plt      0x0000000020000028        0x0 sdram.o
 
-.bss            0x0000000020000028       0xa8 load address 0x000000000800181c
+.bss            0x0000000020000028       0xa8 load address 0x000000000800195c
  *(.bss*)
  .bss.system_millis
                 0x0000000020000028        0x4 clock.o
@@ -1446,53 +1476,55 @@ END GROUP
 OUTPUT(labo4.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x0000000000000000     0xa039
+.debug_info     0x0000000000000000     0xac94
  .debug_info    0x0000000000000000      0x9fb sdram.o
- .debug_info    0x00000000000009fb      0x351 clock.o
- .debug_info    0x0000000000000d4c      0xacb console.o
- .debug_info    0x0000000000001817      0xed3 lcd-spi.o
- .debug_info    0x00000000000026ea     0x200f gfx.o
- .debug_info    0x00000000000046f9      0xd38 labo4.o
- .debug_info    0x0000000000005431      0x203 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_info    0x0000000000005634      0x24e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_info    0x0000000000005882      0x20f /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_info    0x0000000000005a91      0xaee /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_info    0x000000000000657f     0x111e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_info    0x000000000000769d      0xbc4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_info    0x0000000000008261      0x2ea /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_info    0x000000000000854b      0x710 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_info    0x0000000000008c5b      0x333 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_info    0x0000000000008f8e      0x268 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_info    0x00000000000091f6      0x962 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_info    0x0000000000009b58      0x22d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_info    0x0000000000009d85       0xf0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_info    0x0000000000009e75       0xe8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_info    0x0000000000009f5d       0xdc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_info    0x00000000000009fb      0x7e2 clock.o
+ .debug_info    0x00000000000011dd      0xacb console.o
+ .debug_info    0x0000000000001ca8      0xed3 lcd-spi.o
+ .debug_info    0x0000000000002b7b     0x200f gfx.o
+ .debug_info    0x0000000000004b8a     0x11f6 labo4.o
+ .debug_info    0x0000000000005d80      0x203 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_info    0x0000000000005f83      0x24e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_info    0x00000000000061d1      0x20f /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_info    0x00000000000063e0      0xaee /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_info    0x0000000000006ece     0x111e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_info    0x0000000000007fec      0xbc4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_info    0x0000000000008bb0      0x2ea /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_info    0x0000000000008e9a      0x710 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_info    0x00000000000095aa      0x30c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_info    0x00000000000098b6      0x333 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_info    0x0000000000009be9      0x268 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_info    0x0000000000009e51      0x962 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_info    0x000000000000a7b3      0x22d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_info    0x000000000000a9e0       0xf0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_info    0x000000000000aad0       0xe8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_info    0x000000000000abb8       0xdc /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_abbrev   0x0000000000000000     0x2360
+.debug_abbrev   0x0000000000000000     0x24dc
  .debug_abbrev  0x0000000000000000      0x1a7 sdram.o
- .debug_abbrev  0x00000000000001a7      0x1a7 clock.o
- .debug_abbrev  0x000000000000034e      0x251 console.o
- .debug_abbrev  0x000000000000059f      0x3b4 lcd-spi.o
- .debug_abbrev  0x0000000000000953      0x43f gfx.o
- .debug_abbrev  0x0000000000000d92      0x21c labo4.o
- .debug_abbrev  0x0000000000000fae      0x11d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_abbrev  0x00000000000010cb      0x116 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_abbrev  0x00000000000011e1       0xbf /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_abbrev  0x00000000000012a0      0x1da /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_abbrev  0x000000000000147a      0x2d1 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_abbrev  0x000000000000174b      0x241 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_abbrev  0x000000000000198c      0x13e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_abbrev  0x0000000000001aca      0x182 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_abbrev  0x0000000000001c4c      0x18c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_abbrev  0x0000000000001dd8      0x155 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_abbrev  0x0000000000001f2d      0x1f2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_abbrev  0x000000000000211f       0xb5 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_abbrev  0x00000000000021d4       0x9a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_abbrev  0x000000000000226e       0x56 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_abbrev  0x00000000000022c4       0x9c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_abbrev  0x00000000000001a7      0x1b0 clock.o
+ .debug_abbrev  0x0000000000000357      0x251 console.o
+ .debug_abbrev  0x00000000000005a8      0x3b4 lcd-spi.o
+ .debug_abbrev  0x000000000000095c      0x43f gfx.o
+ .debug_abbrev  0x0000000000000d9b      0x26e labo4.o
+ .debug_abbrev  0x0000000000001009      0x11d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_abbrev  0x0000000000001126      0x116 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_abbrev  0x000000000000123c       0xbf /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_abbrev  0x00000000000012fb      0x1da /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_abbrev  0x00000000000014d5      0x2d1 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_abbrev  0x00000000000017a6      0x241 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_abbrev  0x00000000000019e7      0x13e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_abbrev  0x0000000000001b25      0x182 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_abbrev  0x0000000000001ca7      0x121 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_abbrev  0x0000000000001dc8      0x18c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_abbrev  0x0000000000001f54      0x155 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_abbrev  0x00000000000020a9      0x1f2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_abbrev  0x000000000000229b       0xb5 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_abbrev  0x0000000000002350       0x9a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_abbrev  0x00000000000023ea       0x56 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_abbrev  0x0000000000002440       0x9c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_loc      0x0000000000000000     0x38ee
+.debug_loc      0x0000000000000000     0x3987
  .debug_loc     0x0000000000000000       0xde sdram.o
  .debug_loc     0x00000000000000de       0x3a clock.o
  .debug_loc     0x0000000000000118      0x1f3 console.o
@@ -1506,14 +1538,15 @@ LOAD linker stubs
  .debug_loc     0x0000000000002f57      0x1ec /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
  .debug_loc     0x0000000000003143      0x124 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
  .debug_loc     0x0000000000003267      0x1e1 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_loc     0x0000000000003448      0x114 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_loc     0x000000000000355c      0x192 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_loc     0x00000000000036ee       0x25 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_loc     0x0000000000003713      0x14d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_loc     0x0000000000003860       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_loc     0x00000000000038a7       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_loc     0x0000000000003448       0x99 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_loc     0x00000000000034e1      0x114 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_loc     0x00000000000035f5      0x192 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_loc     0x0000000000003787       0x25 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_loc     0x00000000000037ac      0x14d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_loc     0x00000000000038f9       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_loc     0x0000000000003940       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_aranges  0x0000000000000000      0x878
+.debug_aranges  0x0000000000000000      0x8b8
  .debug_aranges
                 0x0000000000000000       0x20 sdram.o
  .debug_aranges
@@ -1543,44 +1576,47 @@ LOAD linker stubs
  .debug_aranges
                 0x00000000000005c8       0xd8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
  .debug_aranges
-                0x00000000000006a0       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+                0x00000000000006a0       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .debug_aranges
-                0x00000000000006d0       0x78 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x00000000000006e0       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
  .debug_aranges
-                0x0000000000000748       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+                0x0000000000000710       0x78 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
  .debug_aranges
-                0x0000000000000778       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+                0x0000000000000788       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
  .debug_aranges
-                0x00000000000007d8       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+                0x00000000000007b8       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
  .debug_aranges
-                0x0000000000000810       0x48 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x0000000000000818       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
  .debug_aranges
-                0x0000000000000858       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+                0x0000000000000850       0x48 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_aranges
+                0x0000000000000898       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_ranges   0x0000000000000000      0x898
+.debug_ranges   0x0000000000000000      0x8e0
  .debug_ranges  0x0000000000000000       0x10 sdram.o
  .debug_ranges  0x0000000000000010       0x28 clock.o
  .debug_ranges  0x0000000000000038       0x38 console.o
  .debug_ranges  0x0000000000000070       0xb0 lcd-spi.o
  .debug_ranges  0x0000000000000120      0x130 gfx.o
- .debug_ranges  0x0000000000000250       0x10 labo4.o
- .debug_ranges  0x0000000000000260       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_ranges  0x0000000000000278       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_ranges  0x00000000000002b8       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_ranges  0x00000000000002d8       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_ranges  0x0000000000000338      0x178 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_ranges  0x00000000000004b0      0x168 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_ranges  0x0000000000000618       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_ranges  0x0000000000000638       0xc8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_ranges  0x0000000000000700       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_ranges  0x0000000000000738       0x80 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_ranges  0x00000000000007b8       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_ranges  0x00000000000007d8       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_ranges  0x0000000000000828       0x28 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_ranges  0x0000000000000850       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_ranges  0x0000000000000888       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_ranges  0x0000000000000250       0x28 labo4.o
+ .debug_ranges  0x0000000000000278       0x18 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_ranges  0x0000000000000290       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_ranges  0x00000000000002d0       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_ranges  0x00000000000002f0       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_ranges  0x0000000000000350      0x178 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_ranges  0x00000000000004c8      0x168 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_ranges  0x0000000000000630       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_ranges  0x0000000000000650       0xc8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_ranges  0x0000000000000718       0x30 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_ranges  0x0000000000000748       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_ranges  0x0000000000000780       0x80 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_ranges  0x0000000000000800       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_ranges  0x0000000000000820       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_ranges  0x0000000000000870       0x28 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_ranges  0x0000000000000898       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_ranges  0x00000000000008d0       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_macro    0x0000000000000000     0x5bec
+.debug_macro    0x0000000000000000     0x5df9
  .debug_macro   0x0000000000000000       0xf7 sdram.o
  .debug_macro   0x00000000000000f7      0xa90 sdram.o
  .debug_macro   0x0000000000000b87      0x34e sdram.o
@@ -1598,137 +1634,141 @@ LOAD linker stubs
  .debug_macro   0x000000000000254f      0x285 sdram.o
  .debug_macro   0x00000000000027d4      0x2b3 sdram.o
  .debug_macro   0x0000000000002a87       0x16 sdram.o
- .debug_macro   0x0000000000002a9d       0xc1 clock.o
- .debug_macro   0x0000000000002b5e       0x6e clock.o
- .debug_macro   0x0000000000002bcc      0x22c clock.o
- .debug_macro   0x0000000000002df8       0x6f clock.o
- .debug_macro   0x0000000000002e67      0x1b6 console.o
- .debug_macro   0x000000000000301d       0x22 console.o
- .debug_macro   0x000000000000303f       0x52 console.o
- .debug_macro   0x0000000000003091       0x18 console.o
- .debug_macro   0x00000000000030a9       0x5c console.o
- .debug_macro   0x0000000000003105       0x35 console.o
- .debug_macro   0x000000000000313a       0x34 console.o
- .debug_macro   0x000000000000316e       0x94 console.o
- .debug_macro   0x0000000000003202      0x29e console.o
- .debug_macro   0x00000000000034a0       0xa0 console.o
- .debug_macro   0x0000000000003540       0x70 console.o
- .debug_macro   0x00000000000035b0      0x458 console.o
- .debug_macro   0x0000000000003a08       0x1f console.o
- .debug_macro   0x0000000000003a27       0x16 console.o
- .debug_macro   0x0000000000003a3d      0x131 lcd-spi.o
- .debug_macro   0x0000000000003b6e      0x2eb lcd-spi.o
- .debug_macro   0x0000000000003e59       0x16 lcd-spi.o
- .debug_macro   0x0000000000003e6f       0x22 lcd-spi.o
- .debug_macro   0x0000000000003e91       0x76 lcd-spi.o
- .debug_macro   0x0000000000003f07      0x125 gfx.o
- .debug_macro   0x000000000000402c      0x16d gfx.o
- .debug_macro   0x0000000000004199       0x16 gfx.o
- .debug_macro   0x00000000000041af       0x43 gfx.o
- .debug_macro   0x00000000000041f2       0x57 gfx.o
- .debug_macro   0x0000000000004249       0x34 gfx.o
- .debug_macro   0x000000000000427d       0x10 gfx.o
- .debug_macro   0x000000000000428d       0x52 gfx.o
- .debug_macro   0x00000000000042df      0x182 gfx.o
- .debug_macro   0x0000000000004461      0x35c gfx.o
- .debug_macro   0x00000000000047bd       0xde gfx.o
- .debug_macro   0x000000000000489b       0x16 gfx.o
- .debug_macro   0x00000000000048b1       0x35 gfx.o
- .debug_macro   0x00000000000048e6       0x22 gfx.o
- .debug_macro   0x0000000000004908       0x58 gfx.o
- .debug_macro   0x0000000000004960       0x16 gfx.o
- .debug_macro   0x0000000000004976      0x10a labo4.o
- .debug_macro   0x0000000000004a80       0x10 labo4.o
- .debug_macro   0x0000000000004a90       0x75 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_macro   0x0000000000004b05       0x88 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_macro   0x0000000000004b8d       0x88 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_macro   0x0000000000004c15       0xa7 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_macro   0x0000000000004cbc       0xdb /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_macro   0x0000000000004d97       0x16 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_macro   0x0000000000004dad       0x1c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_macro   0x0000000000004dc9      0x143 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_macro   0x0000000000004f0c       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_macro   0x0000000000004f1c       0xb6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_macro   0x0000000000004fd2       0xb6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_macro   0x0000000000005088       0xc2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_macro   0x000000000000514a       0x8a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_macro   0x00000000000051d4      0x452 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_macro   0x0000000000005626       0x49 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_macro   0x000000000000566f       0x69 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_macro   0x00000000000056d8      0x123 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_macro   0x00000000000057fb      0x10e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_macro   0x0000000000005909       0x86 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_macro   0x000000000000598f       0x6a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_macro   0x00000000000059f9       0x68 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_macro   0x0000000000005a61       0x8e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_macro   0x0000000000005aef       0x8e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_macro   0x0000000000005b7d       0x6f /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_macro   0x0000000000002a9d      0x12f clock.o
+ .debug_macro   0x0000000000002bcc       0x6e clock.o
+ .debug_macro   0x0000000000002c3a      0x22c clock.o
+ .debug_macro   0x0000000000002e66       0x6f clock.o
+ .debug_macro   0x0000000000002ed5       0x94 clock.o
+ .debug_macro   0x0000000000002f69      0x29e clock.o
+ .debug_macro   0x0000000000003207       0xa0 clock.o
+ .debug_macro   0x00000000000032a7      0x1b6 console.o
+ .debug_macro   0x000000000000345d       0x22 console.o
+ .debug_macro   0x000000000000347f       0x52 console.o
+ .debug_macro   0x00000000000034d1       0x18 console.o
+ .debug_macro   0x00000000000034e9       0x5c console.o
+ .debug_macro   0x0000000000003545       0x35 console.o
+ .debug_macro   0x000000000000357a       0x34 console.o
+ .debug_macro   0x00000000000035ae       0x70 console.o
+ .debug_macro   0x000000000000361e      0x458 console.o
+ .debug_macro   0x0000000000003a76       0x1f console.o
+ .debug_macro   0x0000000000003a95       0x16 console.o
+ .debug_macro   0x0000000000003aab      0x131 lcd-spi.o
+ .debug_macro   0x0000000000003bdc      0x2eb lcd-spi.o
+ .debug_macro   0x0000000000003ec7       0x16 lcd-spi.o
+ .debug_macro   0x0000000000003edd       0x22 lcd-spi.o
+ .debug_macro   0x0000000000003eff       0x76 lcd-spi.o
+ .debug_macro   0x0000000000003f75      0x125 gfx.o
+ .debug_macro   0x000000000000409a      0x16d gfx.o
+ .debug_macro   0x0000000000004207       0x16 gfx.o
+ .debug_macro   0x000000000000421d       0x43 gfx.o
+ .debug_macro   0x0000000000004260       0x57 gfx.o
+ .debug_macro   0x00000000000042b7       0x34 gfx.o
+ .debug_macro   0x00000000000042eb       0x10 gfx.o
+ .debug_macro   0x00000000000042fb       0x52 gfx.o
+ .debug_macro   0x000000000000434d      0x182 gfx.o
+ .debug_macro   0x00000000000044cf      0x35c gfx.o
+ .debug_macro   0x000000000000482b       0xde gfx.o
+ .debug_macro   0x0000000000004909       0x16 gfx.o
+ .debug_macro   0x000000000000491f       0x35 gfx.o
+ .debug_macro   0x0000000000004954       0x22 gfx.o
+ .debug_macro   0x0000000000004976       0x58 gfx.o
+ .debug_macro   0x00000000000049ce       0x16 gfx.o
+ .debug_macro   0x00000000000049e4      0x1e7 labo4.o
+ .debug_macro   0x0000000000004bcb       0x10 labo4.o
+ .debug_macro   0x0000000000004bdb       0x75 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_macro   0x0000000000004c50       0x88 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_macro   0x0000000000004cd8       0x88 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_macro   0x0000000000004d60       0xa7 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_macro   0x0000000000004e07       0xdb /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_macro   0x0000000000004ee2       0x16 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_macro   0x0000000000004ef8       0x1c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_macro   0x0000000000004f14      0x143 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_macro   0x0000000000005057       0x10 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_macro   0x0000000000005067       0xb6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_macro   0x000000000000511d       0xb6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_macro   0x00000000000051d3       0xc2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_macro   0x0000000000005295       0xc2 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_macro   0x0000000000005357       0x8a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_macro   0x00000000000053e1      0x452 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_macro   0x0000000000005833       0x49 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_macro   0x000000000000587c       0x69 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_macro   0x00000000000058e5      0x123 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_macro   0x0000000000005a08      0x10e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_macro   0x0000000000005b16       0x86 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_macro   0x0000000000005b9c       0x6a /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_macro   0x0000000000005c06       0x68 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_macro   0x0000000000005c6e       0x8e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_macro   0x0000000000005cfc       0x8e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_macro   0x0000000000005d8a       0x6f /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_line     0x0000000000000000     0x584c
+.debug_line     0x0000000000000000     0x5f04
  .debug_line    0x0000000000000000      0x3a3 sdram.o
- .debug_line    0x00000000000003a3      0x386 clock.o
- .debug_line    0x0000000000000729      0x6d2 console.o
- .debug_line    0x0000000000000dfb      0x664 lcd-spi.o
- .debug_line    0x000000000000145f      0xccc gfx.o
- .debug_line    0x000000000000212b      0x23c labo4.o
- .debug_line    0x0000000000002367      0x26e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_line    0x00000000000025d5      0x2a5 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_line    0x000000000000287a      0x330 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_line    0x0000000000002baa      0x35e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_line    0x0000000000002f08      0x9b1 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_line    0x00000000000038b9      0x7ed /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_line    0x00000000000040a6      0x26c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_line    0x0000000000004312      0x52b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_line    0x000000000000483d      0x2c3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_line    0x0000000000004b00      0x26e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_line    0x0000000000004d6e      0x232 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_line    0x0000000000004fa0      0x27e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_line    0x000000000000521e      0x245 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_line    0x0000000000005463      0x25e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_line    0x00000000000056c1      0x18b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_line    0x00000000000003a3      0x437 clock.o
+ .debug_line    0x00000000000007da      0x6d2 console.o
+ .debug_line    0x0000000000000eac      0x664 lcd-spi.o
+ .debug_line    0x0000000000001510      0xccc gfx.o
+ .debug_line    0x00000000000021dc      0x5a7 labo4.o
+ .debug_line    0x0000000000002783      0x26e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_line    0x00000000000029f1      0x2a5 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_line    0x0000000000002c96      0x330 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_line    0x0000000000002fc6      0x35e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_line    0x0000000000003324      0x9b1 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_line    0x0000000000003cd5      0x7ed /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_line    0x00000000000044c2      0x26c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_line    0x000000000000472e      0x52b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_line    0x0000000000004c59      0x29c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_line    0x0000000000004ef5      0x2c3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_line    0x00000000000051b8      0x26e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_line    0x0000000000005426      0x232 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_line    0x0000000000005658      0x27e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_line    0x00000000000058d6      0x245 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_line    0x0000000000005b1b      0x25e /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_line    0x0000000000005d79      0x18b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_str      0x0000000000000000    0x16a26
+.debug_str      0x0000000000000000    0x16a7c
  .debug_str     0x0000000000000000     0xbf72 sdram.o
                                        0xc14f (size before relaxing)
- .debug_str     0x000000000000bf72      0xcca clock.o
-                                       0x99b7 (size before relaxing)
- .debug_str     0x000000000000cc3c     0x2fcb console.o
+ .debug_str     0x000000000000bf72     0x1f18 clock.o
+                                       0xc5a1 (size before relaxing)
+ .debug_str     0x000000000000de8a     0x1d7d console.o
                                        0xe062 (size before relaxing)
  .debug_str     0x000000000000fc07     0x1091 lcd-spi.o
                                        0xc1d4 (size before relaxing)
  .debug_str     0x0000000000010c98     0x34dd gfx.o
                                        0x72f7 (size before relaxing)
- .debug_str     0x0000000000014175        0x8 labo4.o
-                                       0x71ec (size before relaxing)
- .debug_str     0x000000000001417d      0x157 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_str     0x0000000000014175       0x45 labo4.o
+                                       0xec9f (size before relaxing)
+ .debug_str     0x00000000000141ba      0x157 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
                                        0x6891 (size before relaxing)
- .debug_str     0x00000000000142d4       0x7b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_str     0x0000000000014311       0x7b /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
                                        0x627a (size before relaxing)
- .debug_str     0x000000000001434f       0x61 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_str     0x000000000001438c       0x61 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
                                        0x6292 (size before relaxing)
- .debug_str     0x00000000000143b0      0x475 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_str     0x00000000000143ed      0x475 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
                                        0x96fb (size before relaxing)
- .debug_str     0x0000000000014825      0xad3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_str     0x0000000000014862      0xad3 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
                                        0x9e12 (size before relaxing)
- .debug_str     0x00000000000152f8      0x3fa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_str     0x0000000000015335      0x3fa /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
                                        0xa17b (size before relaxing)
- .debug_str     0x00000000000156f2       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_str     0x000000000001572f       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
                                        0x9afc (size before relaxing)
- .debug_str     0x0000000000015742      0x1fe /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_str     0x000000000001577f      0x1ea /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
                                        0xa181 (size before relaxing)
- .debug_str     0x0000000000015940      0xe72 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_str     0x0000000000015969       0x2d /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+                                       0x9f3b (size before relaxing)
+ .debug_str     0x0000000000015996      0xe72 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
                                        0x6b36 (size before relaxing)
- .debug_str     0x00000000000167b2       0xbd /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_str     0x0000000000016808       0xbd /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
                                        0x4193 (size before relaxing)
- .debug_str     0x000000000001686f       0x42 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_str     0x00000000000168c5       0x42 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
                                        0x847f (size before relaxing)
- .debug_str     0x00000000000168b1       0xc4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_str     0x0000000000016907       0xc4 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
                                        0x5da1 (size before relaxing)
- .debug_str     0x0000000000016975       0x64 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_str     0x00000000000169cb       0x64 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
                                        0x55dc (size before relaxing)
- .debug_str     0x00000000000169d9       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_str     0x0000000000016a2f       0x47 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
                                        0x55fe (size before relaxing)
- .debug_str     0x0000000000016a20        0x6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_str     0x0000000000016a76        0x6 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
                                        0x51da (size before relaxing)
 
 .comment        0x0000000000000000       0x51
@@ -1747,6 +1787,7 @@ LOAD linker stubs
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
  .comment       0x0000000000000051       0x52 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
@@ -1786,42 +1827,45 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000000000002a4       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
  .ARM.attributes
-                0x00000000000002d8       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+                0x00000000000002d8       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
  .ARM.attributes
-                0x000000000000030c       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+                0x000000000000030c       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
  .ARM.attributes
-                0x0000000000000340       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+                0x0000000000000340       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
  .ARM.attributes
-                0x0000000000000374       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+                0x0000000000000374       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
  .ARM.attributes
-                0x00000000000003a8       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+                0x00000000000003a8       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
  .ARM.attributes
-                0x00000000000003dc       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+                0x00000000000003dc       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
  .ARM.attributes
-                0x0000000000000410       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+                0x0000000000000410       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .ARM.attributes
+                0x0000000000000444       0x34 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
-.debug_frame    0x0000000000000000     0x11c4
+.debug_frame    0x0000000000000000     0x122c
  .debug_frame   0x0000000000000000       0x30 sdram.o
  .debug_frame   0x0000000000000030       0x5c clock.o
  .debug_frame   0x000000000000008c       0xb0 console.o
  .debug_frame   0x000000000000013c       0xc4 lcd-spi.o
  .debug_frame   0x0000000000000200      0x3a8 gfx.o
- .debug_frame   0x00000000000005a8       0x28 labo4.o
- .debug_frame   0x00000000000005d0       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
- .debug_frame   0x0000000000000608       0x80 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
- .debug_frame   0x0000000000000688       0x70 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
- .debug_frame   0x00000000000006f8       0xe0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
- .debug_frame   0x00000000000007d8      0x234 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
- .debug_frame   0x0000000000000a0c      0x2d0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
- .debug_frame   0x0000000000000cdc       0x4c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
- .debug_frame   0x0000000000000d28      0x1b8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
- .debug_frame   0x0000000000000ee0       0x4c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
- .debug_frame   0x0000000000000f2c       0xd8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
- .debug_frame   0x0000000000001004       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
- .debug_frame   0x0000000000001044       0xa0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
- .debug_frame   0x00000000000010e4       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
- .debug_frame   0x0000000000001134       0x70 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
- .debug_frame   0x00000000000011a4       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
+ .debug_frame   0x00000000000005a8       0x30 labo4.o
+ .debug_frame   0x00000000000005d8       0x38 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(fmc_common_f47.o)
+ .debug_frame   0x0000000000000610       0x80 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_all.o)
+ .debug_frame   0x0000000000000690       0x70 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(gpio_common_f0234.o)
+ .debug_frame   0x0000000000000700       0xe0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
+ .debug_frame   0x00000000000007e0      0x234 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
+ .debug_frame   0x0000000000000a14      0x2d0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_all.o)
+ .debug_frame   0x0000000000000ce4       0x4c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(spi_common_v1.o)
+ .debug_frame   0x0000000000000d30      0x1b8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+ .debug_frame   0x0000000000000ee8       0x60 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
+ .debug_frame   0x0000000000000f48       0x4c /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(vector.o)
+ .debug_frame   0x0000000000000f94       0xd8 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(systick.o)
+ .debug_frame   0x000000000000106c       0x40 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(scb.o)
+ .debug_frame   0x00000000000010ac       0xa0 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(nvic.o)
+ .debug_frame   0x000000000000114c       0x50 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_all.o)
+ .debug_frame   0x000000000000119c       0x70 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(flash_common_idcache.o)
+ .debug_frame   0x000000000000120c       0x20 /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(pwr.o)
 
 Cross Reference Table
 
@@ -2045,6 +2089,7 @@ rcc_periph_clock_enable                           /home/licit/Documentos/libopen
                                                   /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc.o)
                                                   lcd-spi.o
                                                   console.o
+                                                  clock.o
                                                   sdram.o
 rcc_periph_reset_hold                             /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
 rcc_periph_reset_pulse                            /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(rcc_common_all.o)
@@ -2195,6 +2240,7 @@ usart_disable_tx_complete_interrupt               /home/licit/Documentos/libopen
 usart_disable_tx_dma                              /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
 usart_disable_tx_interrupt                        /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
 usart_enable                                      /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_enable_error_interrupt                      /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
 usart_enable_idle_interrupt                       /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
@@ -2211,17 +2257,24 @@ usart_recv_blocking                               /home/licit/Documentos/libopen
 usart_send                                        /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
                                                   /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
 usart_send_blocking                               /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
 usart_set_baudrate                                /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_set_databits                                /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_set_flow_control                            /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_set_mode                                    /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_set_parity                                  /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_set_stopbits                                /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
+                                                  labo4.o
                                                   console.o
 usart_wait_recv_ready                             /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_f124.o)
                                                   /home/licit/Documentos/libopencm3/libopencm3-examples/libopencm3/lib/libopencm3_stm32f4.a(usart_common_all.o)
