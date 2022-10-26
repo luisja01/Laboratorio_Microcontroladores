@@ -1,11 +1,7 @@
 /*
  * This file is part of the libopencm3 project.
  *
- * Copyright (C) 2009 Uwe Hermann <uwe@hermann-uwe.de>
- * Copyright (C) 2011 Stephen Caudle <scaudle@doceme.com>
- * Copyright (C) 2012 Daniel Serpell <daniel.serpell@gmail.com>
- * Copyright (C) 2015 Piotr Esden-Tempski <piotr@esden.net>
- * Copyright (C) 2015 Chuck McManis <cmcmanis@mcmanis.com>
+ * Copyright (C) 2014 Chuck McManis <cmcmanis@mcmanis.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,68 +17,57 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#include <ctype.h>
+/*
+ * Now this is just the clock setup code from systick-blink as it is the
+ * transferrable part.
+ */
+
 #include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/usart.h>
-#include <libopencm3/cm3/systick.h>
 #include <libopencm3/cm3/nvic.h>
+#include <libopencm3/cm3/systick.h>
+
+/* Common function descriptions */
 #include "clock.h"
 
-void clock_setup(void)
-{
-	rcc_clock_setup_pll(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
-
-	/* set up the SysTick function (1mS interrupts) */
-	systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
-	STK_CVR = 0;
-	systick_set_reload(rcc_ahb_frequency / 1000);
-	systick_counter_enable();
-	systick_interrupt_enable();
-}
-
-/* simple millisecond counter */
+/* milliseconds since boot */
 static volatile uint32_t system_millis;
-static volatile uint32_t delay_timer;
 
-/*
- * Simple systick handler
- *
- * Increments a 32 bit value once per millesecond
- * which rolls over every 49 days.
- */
+/* Called when systick fires */
 void sys_tick_handler(void)
 {
 	system_millis++;
-	if (delay_timer > 0) {
-		delay_timer--;
-	}
+}
+
+/* simple sleep for delay milliseconds */
+void msleep(uint32_t delay)
+{
+	uint32_t wake = system_millis + delay;
+	while (wake > system_millis);
+}
+
+/* Getter function for the current time */
+uint32_t mtime(void)
+{
+	return system_millis;
 }
 
 /*
- * Simple spin loop waiting for time to pass
+ * clock_setup(void)
  *
- * A couple of things to note:
- * First,  you can't just compare to
- * system_millis because doing so will mean
- * you delay forever if you happen to hit a
- * time where it is rolling over.
- * Second, accuracy is "at best" 1mS as you
- * may call this "just before" the systick hits
- * with a value of '1' and it would return
- * nearly immediately. So if you need really
- * precise delays, use one of the timers.
+ * This function sets up both the base board clock rate
+ * and a 1khz "system tick" count. The SYSTICK counter is
+ * a standard feature of the Cortex-M series.
  */
-void
-msleep(uint32_t delay)
+void clock_setup(void)
 {
-	delay_timer = delay;
-	while (delay_timer);
-}
+	/* Base board frequency, set to 168Mhz */
+	rcc_clock_setup_pll(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
 
-uint32_t
-mtime(void)
-{
-	return system_millis;
+	/* clock rate / 168000 to get 1mS interrupt rate */
+	systick_set_reload(168000);
+	systick_set_clocksource(STK_CSR_CLKSOURCE_AHB);
+	systick_counter_enable();
+
+	/* this done last */
+	systick_interrupt_enable();
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of the libopencm3 project.
  *
- * Copyright (C) 2014-2015 Chuck McManis <cmcmanis@mcmanis.com>
+ * Copyright (C) 2014 Chuck McManis <cmcmanis@mcmanis.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,10 +27,6 @@
 #include <libopencm3/stm32/fsmc.h>
 #include "clock.h"
 #include "sdram.h"
-
-#ifndef NULL
-#define NULL	(void *)(0)
-#endif
 
 /*
  * This is just syntactic sugar but it helps, all of these
@@ -87,7 +83,11 @@ sdram_init(void) {
 	}
 
 	/* Enable the SDRAM Controller */
+#if 1
 	rcc_periph_clock_enable(RCC_FSMC);
+#else
+	rcc_peripheral_enable_clock(&RCC_AHB3ENR, RCC_AHB3ENR_FMCEN);
+#endif
 
 	/* Note the STM32F429-DISCO board has the ram attached to bank 2 */
 	/* Timing parameters computed for a 168Mhz clock */
@@ -119,13 +119,7 @@ sdram_init(void) {
 	 *	- Load the Mode Register
 	 */
 	sdram_command(SDRAM_BANK2, SDRAM_CLK_CONF, 1, 0);
-	/* sleep at least 100uS */
-	msleep(1);
-/*
-	for (i = 0; i < 1000; i++) {
-		__asm("nop");
-	}
-*/
+	msleep(1); /* sleep at least 100uS */
 	sdram_command(SDRAM_BANK2, SDRAM_PALL, 1, 0);
 	sdram_command(SDRAM_BANK2, SDRAM_AUTO_REFRESH, 4, 0);
 	tr_tmp = SDRAM_MODE_BURST_LENGTH_2				|
