@@ -13,19 +13,18 @@ from time import sleep
 
 fileName = "datos.csv" #Nombre del archivo que se generara
 
-datos = serial.Serial("/dev/ttyACM0",9600,timeout=2) # Puerto a utilizar 
+datos = serial.Serial("/dev/ttyACM1",115200,timeout=2) # Puerto a utilizar 
 
-print("Connectado al puerto:" + "/dev/ttyACM0")
+print("Connectado al puerto:" + "/dev/ttyACM1")
 
-arch = open(fileName, "w") # Se crea el archivo csv 
+arch = open(fileName, "w", encoding='UTF8') # Se crea el archivo csv 
 
-
-encabezado = ['Humedad', 'Control', 'Temp_s', 'Temp_op']
+encabezado = ['Eje X', 'Eje Y', 'Eje Z']
 
 # Se imprime encabezado 
-print(encabezado[0]+','+encabezado[1]+','+encabezado[2]+','+encabezado[3])
+print(encabezado[0]+','+encabezado[1]+','+encabezado[2])
 
-arch.write(encabezado[0]+','+encabezado[1]+','+encabezado[2]+','+encabezado[3]+'\n')
+arch.write(encabezado[0]+','+encabezado[1]+','+encabezado[2]+'\n')
 
 # Loop para estar leyendo y escribiendo datos 
 while True:

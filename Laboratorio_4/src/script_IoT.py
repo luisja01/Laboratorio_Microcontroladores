@@ -1,3 +1,14 @@
+'''Universidad de Costa Rica
+IE-0624 Laboratorio de Microcontroladores
+Prof: Marco Villalta Fallas
+Estudiantes: Juan Montealegre B95001 y Luis Herrera B93840
+Laboratorio 4
+Sismógrafo
+Archivo para envío de datos a servidor IoT
+Ciclo: II-2022
+'''
+
+#Se importan las librerias
 import serial, time, json
 import paho.mqtt.client as mqtt
 
@@ -17,8 +28,8 @@ def on_publish(client, userdata, mid):
     print("Mensaje: ", mid, " ha abandonado el cliente")
 
 
-#PuertoSerial = serial.Serial(port = '/tmp/ttyS1') 
-#print("Conectado al puerto serial")
+PuertoSerial = serial.Serial(port = '/dev/ttyACM1') 
+print("Conectado al puerto serial /dev/ttyACM1")
 client = mqtt.Client("B93840")
 client.connected = False
 client.on_connect = on_connect
