@@ -13,9 +13,9 @@ from time import sleep
 
 fileName = "datos.csv" #Nombre del archivo que se generara
 
-datos = serial.Serial("/dev/ttyACM1",115200,timeout=2) # Puerto a utilizar 
+datos = serial.Serial("/dev/ttyACM1",115200,timeout=1) # Puerto a utilizar 
 
-print("Connectado al puerto:" + "/dev/ttyACM1")
+print("Connectado al puerto:" + "/dev/ttyACM0")
 
 arch = open(fileName, "w", encoding='UTF8') # Se crea el archivo csv 
 
@@ -30,10 +30,8 @@ arch.write(encabezado[0]+','+encabezado[1]+','+encabezado[2]+'\n')
 while True:
     sleep(0.18)
 
-    getData=datos.readline() # Lectura de la linea
-    dataString = getData.decode('utf-8') # Decdificación en formato utf-8
-    data = dataString[0:][:-2]   
-    print(data)
-
-    arch = open(fileName, "a")
-    arch.write(data + '\n')
+    data = datos.readline().decode('utf-8').replace('\r', "").replace('\n', "")
+    data = data.split('\t')
+    if len(data) >= 3:
+        print(data)
+       
