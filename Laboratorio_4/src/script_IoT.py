@@ -28,7 +28,7 @@ def on_publish(client, userdata, mid):
     print("Mensaje: ", mid, " ha abandonado el cliente")
 
 
-PuertoSerial = serial.Serial(port = '/dev/ttyACM1') 
+#PuertoSerial = serial.Serial(port = '/dev/ttyACM1') 
 print("Conectado al puerto serial /dev/ttyACM1")
 client = mqtt.Client("B93840")
 client.connected = False
@@ -48,5 +48,25 @@ while client.connected != True:
     time.sleep(2)
 print("Program waits every 10 min to send data to dashboard")
 
-#while (1): 
+datos = ["10", "30", "80", "4.5"]
+
+while (1):
+    #if(PuertoSerial.in_waiting > 0):
+    #input = PuertoSerial.readline()
+    #decode = input.decode().replace('\r\n', '')
+    #split = decode.split('/')
+    dict["Eje X"] = datos[0]
+    dict["Eje Y"] = datos[1]
+    dict["Eje Z"] = datos[2]
+    dict["Voltaje de Bateria"] = datos[3]
+
+    if(float( datos[3]) < 3):
+        dict["Bateria Baja"] = "Si"
+    else:
+        dict["Bateria Baja"] = "No"
+    
+    output = json.dumps(dict)
+    print(output)
+    client.publish(topic, output)
+    time.sleep(5)
     
