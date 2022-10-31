@@ -13,7 +13,7 @@ from time import sleep
 
 fileName = "datos.csv" #Nombre del archivo que se generara
 
-datos = serial.Serial("/dev/ttyACM0",115200,timeout=1) # Puerto a utilizar 
+datos = serial.Serial("/dev/ttyACM1",115200,timeout=1) # Puerto a utilizar 
 
 print("Connectado al puerto:" + "/dev/ttyACM0")
 

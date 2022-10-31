@@ -51,7 +51,7 @@ Ciclo: II-2022
 #define GYR_OUT_Z_L		0x2C
 #define GYR_OUT_Z_H		0x2D
 
-#define L3GD20_SENSITIVITY_250DPS  (0.00875F) 
+#define L3GD20_SENSITIVITY_250DPS  (0.00875F)  
 //Se crea struct para el gyroscopio
 typedef struct Gyro {
   int16_t x;
@@ -64,15 +64,18 @@ gyro read_xyz(void);
 
 static void spi_setup(void)
 {
-	//Configuracion spi para el giroscopio
 	rcc_periph_clock_enable(RCC_SPI5);
-	rcc_periph_clock_enable(RCC_DAC);
-	rcc_periph_clock_enable(RCC_ADC1);
-	rcc_periph_clock_enable(RCC_GPIOC);
+    rcc_periph_clock_enable(RCC_GPIOC);
 	rcc_periph_clock_enable(RCC_GPIOF);
+
+    /* Se seleccina chip line */
 	gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1);
     gpio_set(GPIOC, GPIO1);
-	spi_set_master_mode(SPI5);
+    gpio_mode_setup(GPIOF, GPIO_MODE_AF, GPIO_PUPD_NONE,
+		GPIO7 | GPIO8 | GPIO9);   
+	gpio_set_af(GPIOF, GPIO_AF5, GPIO7 | GPIO8 | GPIO9);
+    //Inicializacion del spi
+    spi_set_master_mode(SPI5);
 	spi_set_baudrate_prescaler(SPI5, SPI_CR1_BR_FPCLK_DIV_64);
 	spi_set_clock_polarity_0(SPI5);
 	spi_set_clock_phase_0(SPI5);
@@ -81,8 +84,23 @@ static void spi_setup(void)
 	spi_enable_software_slave_management(SPI5);
 	spi_send_msb_first(SPI5);
 	spi_set_nss_high(SPI5);
-	SPI_I2SCFGR(SPI5) &= ~SPI_I2SCFGR_I2SMOD;
+    SPI_I2SCFGR(SPI5) &= ~SPI_I2SCFGR_I2SMOD;  
 	spi_enable(SPI5);
+	//Configuracion necesaria para el giroscopio tomada del ejemplo de la carpeta del f3
+	gpio_clear(GPIOC, GPIO1);
+	spi_send(SPI5, GYR_CTRL_REG1); 
+	spi_read(SPI5);
+	spi_send(SPI5, GYR_CTRL_REG1_PD | GYR_CTRL_REG1_XEN |
+			GYR_CTRL_REG1_YEN | GYR_CTRL_REG1_ZEN |
+			(3 << GYR_CTRL_REG1_BW_SHIFT));
+	spi_read(SPI5);
+	gpio_set(GPIOC, GPIO1); 
+    gpio_clear(GPIOC, GPIO1);
+	spi_send(SPI5, GYR_CTRL_REG4);
+	spi_read(SPI5);
+	spi_send(SPI5, (1 << GYR_CTRL_REG4_FS_SHIFT));
+	spi_read(SPI5);
+	gpio_set(GPIOC, GPIO1);
 }
 
 static void usart_setup(void)
@@ -174,22 +192,17 @@ gyro read_xyz(void)
 
 static void gpio_setup(void)
 {
-	/* Enable GPIOG clock. */
+	//Se habilitan los relojes
 	rcc_periph_clock_enable(RCC_GPIOG);
 
-	/* Enable GPIOA clock. */
 	rcc_periph_clock_enable(RCC_GPIOA);
 
 	/* Set GPIO0 (in GPIO port A) to 'input open-drain'. */
 	gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0);
-
 	/* Set GPIO13 (in GPIO port G) to 'output push-pull'. */
-	gpio_mode_setup(GPIOG, GPIO_MODE_OUTPUT,
-			GPIO_PUPD_NONE, GPIO13);
-
+	gpio_mode_setup(GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13);
 			/* Set GPIO14 (in GPIO port G) to 'output push-pull'. */
-	gpio_mode_setup(GPIOG, GPIO_MODE_OUTPUT,
-			GPIO_PUPD_NONE, GPIO14);
+	gpio_mode_setup(GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO14);
 }
 
 int print_decimal(int num)
@@ -258,31 +271,13 @@ int main(void)
 	char print_bat[5];
 	bool enviar = false; 
 	uint16_t input_adc0;
-	uint8_t temp;
-    uint8_t who;
 	console_setup(115200);
 	clock_setup();
 	gpio_setup();
-	//adc_setup();
+	adc_setup();
 	sdram_init();
 	usart_setup();
 	spi_setup();
-	//Inicializacion necesario de acuerdo a ejemplo
-	gpio_clear(GPIOC, GPIO1);
-	spi_send(SPI5, GYR_CTRL_REG1);
-	spi_read(SPI5);
-	spi_send(SPI5, GYR_CTRL_REG1_PD | GYR_CTRL_REG1_XEN |
-			GYR_CTRL_REG1_YEN | GYR_CTRL_REG1_ZEN |
-			(3 << GYR_CTRL_REG1_BW_SHIFT));
-	spi_read(SPI5);
-	gpio_set(GPIOC, GPIO1);
-
-	gpio_clear(GPIOC, GPIO1);
-	spi_send(SPI5, GYR_CTRL_REG4);
-	spi_read(SPI5);
-	spi_send(SPI5, (1 << GYR_CTRL_REG4_FS_SHIFT));
-	spi_read(SPI5);
-	gpio_set(GPIOC, GPIO1);
 	lcd_spi_init();
 	gfx_init(lcd_draw_pixel, 240, 320);
 
@@ -297,7 +292,7 @@ int main(void)
 		sprintf(print_z, "%s", "Z:");
 		sprintf(data, "%d", lectura.z);
 		strcat(print_z, data);
-		sprintf(print_bat, "%s", "Z:");
+		sprintf(print_bat, "%s", "V:");
 		sprintf(data, "%f", bateria_lvl);
 		strcat(print_bat, data);
 		
@@ -316,9 +311,9 @@ int main(void)
 		gfx_setCursor(15, 94);
 		gfx_setTextSize(1);
 		gfx_puts(print_x);
-		gfx_setCursor(50, 94);
+		gfx_setCursor(80, 94);
 		gfx_puts(print_y);
-		gfx_setCursor(85, 94);
+		gfx_setCursor(145, 94);
 		gfx_puts(print_z);
 		gfx_setTextSize(2);
 		gfx_setCursor(15, 120);
@@ -334,11 +329,13 @@ int main(void)
 		gfx_setCursor(15, 283);
 		gfx_puts("Juan Montealegre");
 		lcd_show_frame();
-		
+		gpio_clear(GPIOC, GPIO1); 
 		//Enviar datos
 		lectura = read_xyz();
+		gpio_set(GPIOC, GPIO1); 
 		//input_adc0 = read_adc_naiive(4);
 		//bateria_lvl = (input_adc0*5)/4095;
+		bateria_lvl = 5;
 		if (enviar)
 		{
 			print_decimal(lectura.x);
