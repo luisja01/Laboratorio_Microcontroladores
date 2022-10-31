@@ -7,6 +7,8 @@ Sismógrafo
 Ciclo: II-2022
 */
 
+#include <stdio.h>
+#include <string.h>
 #include <stdint.h>
 #include <math.h>
 #include "clock.h"
@@ -49,13 +51,16 @@ Ciclo: II-2022
 #define GYR_OUT_Z_L		0x2C
 #define GYR_OUT_Z_H		0x2D
 
-#define L3GD20_SENSITIVITY_250DPS  (0.00875F)      // Roughly 22/256 for fixed point match
-#define L3GD20_SENSITIVITY_500DPS  (0.0175F)       // Roughly 45/256
-#define L3GD20_SENSITIVITY_2000DPS (0.070F)        // Roughly 18/256
-#define L3GD20_DPS_TO_RADS         (0.017453293F)  // degress/s to rad/s multiplier
+#define L3GD20_SENSITIVITY_250DPS  (0.00875F) 
+//Se crea struct para el gyroscopio
+typedef struct Gyro {
+  int16_t x;
+  int16_t y;
+  int16_t z;
+} gyro;
 
 int print_decimal(int);
-int16_t read_xyz(int16_t vecs[3]);
+gyro read_xyz(void);
 
 static void spi_setup(void)
 {
@@ -95,9 +100,9 @@ static void usart_setup(void)
 
 
 
-int16_t read_xyz(int16_t vecs[3])
+gyro read_xyz(void)
 {
-	
+	gyro lectura;
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_WHO_AM_I | 0x80);
 	spi_read(SPI5);
@@ -123,48 +128,48 @@ int16_t read_xyz(int16_t vecs[3])
 	spi_send(SPI5, GYR_OUT_X_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[0]=spi_read(SPI5);
+	lectura.x = spi_read(SPI5);
 	gpio_set(GPIOC, GPIO1);
 
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_X_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[0]|=spi_read(SPI5) << 8;
+	lectura.x |=spi_read(SPI5) << 8;
 	gpio_set(GPIOC, GPIO1);
 
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Y_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[1]=spi_read(SPI5);
+	lectura.y =spi_read(SPI5);
 	gpio_set(GPIOC, GPIO1);
 
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Y_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[1]|=spi_read(SPI5) << 8;
+	lectura.y|=spi_read(SPI5) << 8;
 	gpio_set(GPIOC, GPIO1);
 
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Z_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[2]=spi_read(SPI5);
+	lectura.z=spi_read(SPI5);
 	gpio_set(GPIOC, GPIO1);
 
 	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Z_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	vecs[2]|=spi_read(SPI5) << 8;
+	lectura.z|=spi_read(SPI5) << 8;
 	gpio_set(GPIOC, GPIO1);
 
-	vecs[0] = vecs[0]*L3GD20_SENSITIVITY_500DPS;
-    vecs[1] = vecs[1]*L3GD20_SENSITIVITY_500DPS;
-    vecs[2] = vecs[2]*L3GD20_SENSITIVITY_500DPS;
-	return vecs[0], vecs[1], vecs[2];
+	lectura.x = lectura.x*L3GD20_SENSITIVITY_250DPS;
+    lectura.y = lectura.y*L3GD20_SENSITIVITY_250DPS;
+    lectura.z = lectura.z*L3GD20_SENSITIVITY_250DPS;
+	return lectura;
 }
 
 static void gpio_setup(void)
@@ -244,7 +249,7 @@ static uint16_t read_adc_naiive(uint8_t channel)
 int main(void)
 {	
 
-	int16_t vecs[3];
+	gyro lectura;
 	float bateria_lvl;
 	char data[10];
 	char print_x[5];
@@ -282,17 +287,15 @@ int main(void)
 	gfx_init(lcd_draw_pixel, 240, 320);
 
 	while (1) {
-		int16_t gyro_x;
-        int16_t gyro_y;
-        int16_t gyro_z;
+
 		sprintf(print_x, "%s", "X:");
-		sprintf(data, "%d", gyro_x);
+		sprintf(data, "%d", lectura.x);
 		strcat(print_x, data);
 		sprintf(print_y, "%s", "Y:");
-		sprintf(data, "%d", gyro_y);
+		sprintf(data, "%d", lectura.y);
 		strcat(print_y, data);
 		sprintf(print_z, "%s", "Z:");
-		sprintf(data, "%d", gyro_z);
+		sprintf(data, "%d", lectura.z);
 		strcat(print_z, data);
 		sprintf(print_bat, "%s", "Z:");
 		sprintf(data, "%f", bateria_lvl);
@@ -333,83 +336,18 @@ int main(void)
 		lcd_show_frame();
 		
 		//Enviar datos
-		
-		
-		gpio_clear(GPIOC, GPIO1);             
-		spi_send(SPI5, GYR_WHO_AM_I | 0x80);
-		spi_read(SPI5); 
-		spi_send(SPI5, 0);    
-		who=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_STATUS_REG | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		temp=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_TEMP | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		temp=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);  
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_X_L | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_x=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_X_H | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_x|=spi_read(SPI5) << 8;
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_Y_L | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_y=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_Y_H | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_y|=spi_read(SPI5) << 8;
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_Z_L | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_z=spi_read(SPI5);
-		gpio_set(GPIOC, GPIO1);
-
-		gpio_clear(GPIOC, GPIO1);
-		spi_send(SPI5, GYR_OUT_Z_H | GYR_RNW);
-		spi_read(SPI5);
-		spi_send(SPI5, 0);
-		gyro_z|=spi_read(SPI5) << 8;
-		gpio_set(GPIOC, GPIO1);
-
-        gyro_x = gyro_x*L3GD20_SENSITIVITY_500DPS;
-        gyro_y = gyro_y*L3GD20_SENSITIVITY_500DPS;
-        gyro_z = gyro_z*L3GD20_SENSITIVITY_500DPS;
-		//input_adc0 = read_adc_naiive(0);
+		lectura = read_xyz();
+		//input_adc0 = read_adc_naiive(4);
 		//bateria_lvl = (input_adc0*5)/4095;
 		if (enviar)
 		{
-			print_decimal(gyro_x);
+			print_decimal(lectura.x);
 			console_puts("\t");
-       	 	print_decimal(gyro_y);
+       	 	print_decimal(lectura.y);
 			console_puts("\t");
-        	print_decimal(gyro_z); 
+        	print_decimal(lectura.z); 
+			console_puts("\t");
+			print_decimal(bateria_lvl); 
 			console_puts("\n");
 			gpio_toggle(GPIOG, GPIO13);
 		}
