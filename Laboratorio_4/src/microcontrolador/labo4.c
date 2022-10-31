@@ -13,13 +13,19 @@ Ciclo: II-2022
 #include "console.h"
 #include "sdram.h"
 #include "lcd-spi.h"
+#include <errno.h>
 #include "gfx.h"
 #include "rcc.h"
+#include "adc.h"
+#include "dac.h"
 #include "gpio.h"
 #include "spi.h"
 #include "usart.h"
 #include <errno.h>
 #include <unistd.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/spi.h>
 
 //Se definen parametros necesarios para el giroscopio
 #define GYR_RNW			(1 << 7) /* Write when zero */
@@ -43,12 +49,24 @@ Ciclo: II-2022
 #define GYR_OUT_Z_L		0x2C
 #define GYR_OUT_Z_H		0x2D
 
+#define L3GD20_SENSITIVITY_250DPS  (0.00875F)      // Roughly 22/256 for fixed point match
+#define L3GD20_SENSITIVITY_500DPS  (0.0175F)       // Roughly 45/256
+#define L3GD20_SENSITIVITY_2000DPS (0.070F)        // Roughly 18/256
+#define L3GD20_DPS_TO_RADS         (0.017453293F)  // degress/s to rad/s multiplier
+
 int print_decimal(int);
+int16_t read_xyz(int16_t vecs[3]);
 
 static void spi_setup(void)
 {
 	//Configuracion spi para el giroscopio
 	rcc_periph_clock_enable(RCC_SPI5);
+	rcc_periph_clock_enable(RCC_DAC);
+	rcc_periph_clock_enable(RCC_ADC1);
+	rcc_periph_clock_enable(RCC_GPIOC);
+	rcc_periph_clock_enable(RCC_GPIOF);
+	gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1);
+    gpio_set(GPIOC, GPIO1);
 	spi_set_master_mode(SPI5);
 	spi_set_baudrate_prescaler(SPI5, SPI_CR1_BR_FPCLK_DIV_64);
 	spi_set_clock_polarity_0(SPI5);
@@ -77,71 +95,76 @@ static void usart_setup(void)
 
 
 
-static void read_xyz(int16_t vecs[3])
+int16_t read_xyz(int16_t vecs[3])
 {
-	uint8_t temp;
-	gpio_clear(GPIOE, GPIO3);
-	spi_send(SPI5, GYR_WHO_AM_I | GYR_RNW);
+	
+	gpio_clear(GPIOC, GPIO1);
+	spi_send(SPI5, GYR_WHO_AM_I | 0x80);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	temp=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	spi_read(SPI5);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_STATUS_REG | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	temp=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	spi_read(SPI5);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_TEMP | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
-	temp=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	spi_read(SPI5);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_X_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[0]=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_X_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[0]|=spi_read(SPI5) << 8;
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Y_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[1]=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Y_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[1]|=spi_read(SPI5) << 8;
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Z_L | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[2]=spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_OUT_Z_H | GYR_RNW);
 	spi_read(SPI5);
 	spi_send(SPI5, 0);
 	vecs[2]|=spi_read(SPI5) << 8;
-	gpio_set(GPIOE, GPIO3);
+	gpio_set(GPIOC, GPIO1);
+
+	vecs[0] = vecs[0]*L3GD20_SENSITIVITY_500DPS;
+    vecs[1] = vecs[1]*L3GD20_SENSITIVITY_500DPS;
+    vecs[2] = vecs[2]*L3GD20_SENSITIVITY_500DPS;
+	return vecs[0], vecs[1], vecs[2];
 }
 
 static void gpio_setup(void)
@@ -196,49 +219,84 @@ int print_decimal(int num)
 	return len; /* number of characters printed */
 }
 
+static void adc_setup(void)
+{
+	gpio_mode_setup(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO4);
+	adc_power_off(ADC1);
+	adc_disable_scan_mode(ADC1);
+	adc_set_sample_time_on_all_channels(ADC1, ADC_SMPR_SMP_3CYC);
+	adc_power_on(ADC1);
+
+}
+
+static uint16_t read_adc_naiive(uint8_t channel)
+{
+	uint8_t channel_array[16];
+	channel_array[0] = channel;
+	adc_set_regular_sequence(ADC1, 1, channel_array);
+	adc_start_conversion_regular(ADC1);
+	while (!adc_eoc(ADC1));
+	uint16_t reg16 = adc_read_regular(ADC1);
+	return reg16;
+}
+
+
 int main(void)
 {	
 
-	char bateria = "0";
 	int16_t vecs[3];
-	int bateria_lvl = 5;
-	char gyro_x = "0";
-	char gyro_y = "0";
-	char gyro_z = "0";
+	float bateria_lvl;
+	char data[10];
+	char print_x[5];
+	char print_y[5];
+	char print_z[5];
+	char print_bat[5];
 	bool enviar = false; 
-	uint32_t cr_tmp;
+	uint16_t input_adc0;
+	uint8_t temp;
+    uint8_t who;
+	console_setup(115200);
 	clock_setup();
 	gpio_setup();
-	console_setup(115200);
+	//adc_setup();
 	sdram_init();
 	usart_setup();
 	spi_setup();
 	//Inicializacion necesario de acuerdo a ejemplo
-	gpio_clear(GPIOE, GPIO1);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_CTRL_REG1);
 	spi_read(SPI5);
 	spi_send(SPI5, GYR_CTRL_REG1_PD | GYR_CTRL_REG1_XEN |
 			GYR_CTRL_REG1_YEN | GYR_CTRL_REG1_ZEN |
 			(3 << GYR_CTRL_REG1_BW_SHIFT));
 	spi_read(SPI5);
-	gpio_set(GPIOE, GPIO1);
+	gpio_set(GPIOC, GPIO1);
 
-	gpio_clear(GPIOE, GPIO3);
+	gpio_clear(GPIOC, GPIO1);
 	spi_send(SPI5, GYR_CTRL_REG4);
 	spi_read(SPI5);
 	spi_send(SPI5, (1 << GYR_CTRL_REG4_FS_SHIFT));
 	spi_read(SPI5);
-	gpio_set(GPIOE, GPIO3);
-
+	gpio_set(GPIOC, GPIO1);
 	lcd_spi_init();
 	gfx_init(lcd_draw_pixel, 240, 320);
 
 	while (1) {
-		sprintf(gyro_x, "%d", vecs[0]);
-		sprintf(gyro_y, "%d", vecs[1]);
-		sprintf(gyro_z, "%d", vecs[2]);
-		sprintf(bateria, "%d", bateria_lvl);
-	
+		int16_t gyro_x;
+        int16_t gyro_y;
+        int16_t gyro_z;
+		sprintf(print_x, "%s", "X:");
+		sprintf(data, "%d", gyro_x);
+		strcat(print_x, data);
+		sprintf(print_y, "%s", "Y:");
+		sprintf(data, "%d", gyro_y);
+		strcat(print_y, data);
+		sprintf(print_z, "%s", "Z:");
+		sprintf(data, "%d", gyro_z);
+		strcat(print_z, data);
+		sprintf(print_bat, "%s", "Z:");
+		sprintf(data, "%f", bateria_lvl);
+		strcat(print_bat, data);
 		
 		gfx_fillScreen(LCD_BLACK);
 		//Desplagar en pantalla
@@ -254,24 +312,18 @@ int main(void)
 		gfx_puts("Orientacion:");
 		gfx_setCursor(15, 94);
 		gfx_setTextSize(1);
-		gfx_puts("X:");
-		gfx_setCursor(30, 94);
-		gfx_puts(gyro_x);
+		gfx_puts(print_x);
 		gfx_setCursor(50, 94);
-		gfx_puts("Y:");
-		gfx_setCursor(65, 94);
-		gfx_puts(gyro_y);
+		gfx_puts(print_y);
 		gfx_setCursor(85, 94);
-		gfx_puts("Z:");
-		gfx_setCursor(100, 94);
-		gfx_puts(gyro_z);
+		gfx_puts(print_z);
 		gfx_setTextSize(2);
 		gfx_setCursor(15, 120);
 		gfx_puts("Bateria:");
 		gfx_setCursor(15, 144);
 		gfx_setTextSize(1);
-		gfx_puts(bateria);
-		gfx_setCursor(30, 144);
+		gfx_puts(print_bat);
+		gfx_setCursor(100, 144);
 		gfx_puts("V");
 		gfx_setCursor(15, 270);
 		gfx_setTextSize(1);
@@ -282,24 +334,94 @@ int main(void)
 		
 		//Enviar datos
 		
-		read_xyz(vecs);
+		
+		gpio_clear(GPIOC, GPIO1);             
+		spi_send(SPI5, GYR_WHO_AM_I | 0x80);
+		spi_read(SPI5); 
+		spi_send(SPI5, 0);    
+		who=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);
 
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_STATUS_REG | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		temp=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_TEMP | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		temp=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);  
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_X_L | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_x=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_X_H | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_x|=spi_read(SPI5) << 8;
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_Y_L | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_y=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_Y_H | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_y|=spi_read(SPI5) << 8;
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_Z_L | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_z=spi_read(SPI5);
+		gpio_set(GPIOC, GPIO1);
+
+		gpio_clear(GPIOC, GPIO1);
+		spi_send(SPI5, GYR_OUT_Z_H | GYR_RNW);
+		spi_read(SPI5);
+		spi_send(SPI5, 0);
+		gyro_z|=spi_read(SPI5) << 8;
+		gpio_set(GPIOC, GPIO1);
+
+        gyro_x = gyro_x*L3GD20_SENSITIVITY_500DPS;
+        gyro_y = gyro_y*L3GD20_SENSITIVITY_500DPS;
+        gyro_z = gyro_z*L3GD20_SENSITIVITY_500DPS;
+		//input_adc0 = read_adc_naiive(0);
+		//bateria_lvl = (input_adc0*5)/4095;
 		if (enviar)
 		{
-			print_decimal(vecs[0]); console_puts("\t");
-       	 	print_decimal(vecs[1]); console_puts("\t");
-        	print_decimal(vecs[2]); console_puts("\n");
+			print_decimal(gyro_x);
+			console_puts("\t");
+       	 	print_decimal(gyro_y);
+			console_puts("\t");
+        	print_decimal(gyro_z); 
+			console_puts("\n");
 			gpio_toggle(GPIOG, GPIO13);
 		}
 
 		else{
-			gpio_clear(GPIOC, GPIO13);
+			gpio_clear(GPIOG, GPIO13);
 		}
 
 		if (gpio_get(GPIOA, GPIO0)) {
 			if (enviar) {
 				enviar = false;
-				gpio_clear(GPIOC, GPIO13);
+				gpio_clear(GPIOG, GPIO13);
 				}
 			else enviar = true;
 		}

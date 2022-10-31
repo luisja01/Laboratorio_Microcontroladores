@@ -1,7 +1,7 @@
 /*
  * This file is part of the libopencm3 project.
  *
- * Copyright (C) 2014 Chuck McManis <cmcmanis@mcmanis.com>
+ * Copyright (C) 2013 Chuck McManis <cmcmanis@mcmanis.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -59,8 +59,8 @@ volatile int recv_ndx_cur;		/* Next place to read */
  */
 void usart1_isr(void)
 {
-	uint32_t	reg;
-	int			i;
+	uint32_t reg;
+	int i;
 
 	do {
 		reg = USART_SR(CONSOLE_UART);
@@ -184,14 +184,13 @@ int console_gets(char *s, int len)
  */
 void console_setup(int baud)
 {
-
 	/* MUST enable the GPIO clock in ADDITION to the USART clock */
 	rcc_periph_clock_enable(RCC_GPIOA);
 
 	/* This example uses PA9 and PA10 for Tx and Rx respectively
 	 * but other pins are available for this role on USART1 (our chosen
-	 * USART) as well. We decided on the ones above as they are connected
-	 * to the programming circuitry through jumpers.
+	 * USART) as well, we are using these because they are connected to the
+	 * programmer through some jumpers.
 	 */
 	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9 | GPIO10);
 
@@ -206,8 +205,8 @@ void console_setup(int baud)
 	 * attached inside the chip to the APB1 bus. Different peripherals
 	 * attach to different buses, and even some UARTS are attached to
 	 * APB1 and some to APB2, again the data sheet is useful here.
-	 * We use the rcc_periph_clock_enable function that knows which
-	 * peripheral is on which bus and sets it up for us.
+	 * We are using rcc_periph_clock_enable that knows which peripheral is
+	 * on which clock bus and sets up everything accordingly.
 	 */
 	rcc_periph_clock_enable(RCC_USART1);
 

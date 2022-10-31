@@ -1,7 +1,7 @@
 /*
  * This file is part of the libopencm3 project.
  *
- * Copyright (C) 2014 Chuck McManis <cmcmanis@mcmanis.com>
+ * Copyright (C) 2013 Chuck McManis <cmcmanis@mcmanis.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,9 +25,6 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/cm3/systick.h>
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/usart.h>
 
 /* Common function descriptions */
 #include "clock.h"
@@ -73,10 +70,4 @@ void clock_setup(void)
 
 	/* this done last */
 	systick_interrupt_enable();
-	/* Enable GPIOG clock for LED & USARTs. */
-	rcc_periph_clock_enable(RCC_GPIOG);
-	rcc_periph_clock_enable(RCC_GPIOA);
-
-	/* Enable clocks for USART2. */
-	rcc_periph_clock_enable(RCC_USART1);
 }
