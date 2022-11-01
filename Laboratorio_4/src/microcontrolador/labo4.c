@@ -105,7 +105,13 @@ static void spi_setup(void)
 
 static void usart_setup(void)
 {
-	/* Setup USART2 parameters. */
+	/* Setup GPIO pins for USART1 transmit. */
+	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9);
+
+	/* Setup USART1 TX pin as alternate function. */
+	
+	gpio_set_af(GPIOA, GPIO_AF7, GPIO9);
+
 	usart_set_baudrate(USART1, 115200);
 	usart_set_databits(USART1, 8);
 	usart_set_stopbits(USART1, USART_STOPBITS_1);
@@ -239,7 +245,7 @@ int print_decimal(int num)
 
 static void adc_setup(void)
 {
-	gpio_mode_setup(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO4);
+	gpio_mode_setup(GPIOA, GPIO_MODE_ANALOG, GPIO_PUPD_NONE, GPIO1);
 	adc_power_off(ADC1);
 	adc_disable_scan_mode(ADC1);
 	adc_set_sample_time_on_all_channels(ADC1, ADC_SMPR_SMP_3CYC);
@@ -273,6 +279,8 @@ int main(void)
 	uint16_t input_adc0;
 	console_setup(115200);
 	clock_setup();
+	rcc_periph_clock_enable(RCC_USART1);
+	rcc_periph_clock_enable(RCC_ADC1);
 	gpio_setup();
 	adc_setup();
 	sdram_init();
@@ -321,7 +329,7 @@ int main(void)
 		gfx_setCursor(15, 144);
 		gfx_setTextSize(1);
 		gfx_puts(print_bat);
-		gfx_setCursor(100, 144);
+		gfx_setCursor(114, 144);
 		gfx_puts("V");
 		gfx_setCursor(15, 270);
 		gfx_setTextSize(1);
@@ -333,9 +341,11 @@ int main(void)
 		//Enviar datos
 		lectura = read_xyz();
 		gpio_set(GPIOC, GPIO1); 
-		//input_adc0 = read_adc_naiive(4);
+		input_adc0 = read_adc_naiive(1);
 		//bateria_lvl = (input_adc0*5)/4095;
-		bateria_lvl = 5;
+		bateria_lvl = (input_adc0*8.64)/62
+		;
+	
 		if (enviar)
 		{
 			print_decimal(lectura.x);
@@ -353,6 +363,14 @@ int main(void)
 			gpio_clear(GPIOG, GPIO13);
 		}
 
+		if (bateria_lvl<7)
+		{
+			gpio_clear(GPIOG, GPIO14);
+			gpio_toggle(GPIOG, GPIO14);
+		}
+
+		else gpio_clear(GPIOG, GPIO14);
+		
 		if (gpio_get(GPIOA, GPIO0)) {
 			if (enviar) {
 				enviar = false;

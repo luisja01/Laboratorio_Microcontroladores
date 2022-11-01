@@ -15,7 +15,7 @@ fileName = "datos.csv" #Nombre del archivo que se generara
 
 datos = serial.Serial("/dev/ttyACM1",115200,timeout=1) # Puerto a utilizar 
 
-print("Connectado al puerto:" + "/dev/ttyACM0")
+print("Connectado al puerto:" + "/dev/ttyACM1")
 
 arch = open(fileName, "w", encoding='UTF8') # Se crea el archivo csv 
 
