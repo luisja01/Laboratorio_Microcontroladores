@@ -365,7 +365,6 @@ int main(void)
 
 		if (bateria_lvl<7)
 		{
-			gpio_clear(GPIOG, GPIO14);
 			gpio_toggle(GPIOG, GPIO14);
 		}
 
