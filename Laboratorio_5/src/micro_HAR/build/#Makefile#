@@ -1,0 +1,3 @@
+model.add(tf.keras.layers.Dense(150, activation='relu')) # relu is used for performance
+model.add(tf.keras.layers.Dense(100, activation='relu'))
+model.add(tf.keras.layers.Den
