@@ -1,3 +1,13 @@
+'''Universidad de Costa Rica
+IE-0624 Laboratorio de Microcontroladores
+Prof: Marco Villalta Fallas
+Estudiantes: Juan Montealegre B95001 y Luis Herrera B93840
+Laboratorio 5
+STM32/Arduino: GPIO, Giroscopio, comunicaciones, TinyML
+Script de Python que genera modelo para cargar al microcontrolador
+Ciclo: II-2022
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -15,6 +25,7 @@ index = range(1, len(df['Eje X']) + 1)
 
 plt.rcParams["figure.figsize"] = (20,10)
 
+# Gráfica de datos para un gesto 
 plt.plot(index, df['Eje X'], 'g.', label='x', linestyle='solid', marker=',')
 plt.plot(index, df['Eje Y'], 'b.', label='y', linestyle='solid', marker=',')
 plt.plot(index, df['Eje Z'], 'r.', label='z', linestyle='solid', marker=',')
@@ -25,34 +36,35 @@ plt.legend()
 plt.show()
 
 
-# Entrenamiento de red neuronal 
+# Entrenamiento y creación de red neuronal 
 
 print(f"TensorFlow version = {tf.__version__}\n")
 
-# Set a fixed random seed value, for reproducibility, this will allow us to get
-# the same random numbers each time the notebook is run
+# Se crea una semilla aleatoria para crear el modelo 
 SEED = 1337
 np.random.seed(SEED)
 tf.random.set_seed(SEED)
 
-# the list of gestures that data is available for
+# Lista de gestos a utilizar en el modelo 
 GESTURES = [
     "estacionario",
     "circulo",
     "golpe"
 ]
 
-SAMPLES_PER_GESTURE = 39
+#Número de samples por gesto 
+SAMPLES_PER_GESTURE = 119   
 
 NUM_GESTURES = len(GESTURES)
 
-# create a one-hot encoded matrix that is used in the output
+# Matriz one-hot códificada utilizada para salidas del modelo 
 ONE_HOT_ENCODED_GESTURES = np.eye(NUM_GESTURES)
 
+# Vectores de salida y entrada 
 inputs = []
 outputs = []
 
-# read each csv file and push an input and output
+# Se lee cada archivo csv y se rellenan los vectores de entrada y salida 
 for gesture_index in range(NUM_GESTURES):
   gesture = GESTURES[gesture_index]
   print(f"Processing index {gesture_index} for gesture '{gesture}'.")
@@ -61,44 +73,41 @@ for gesture_index in range(NUM_GESTURES):
   
   df = pd.read_csv(gesture + ".csv")
   
-  # calculate the number of gesture recordings in the file
+  # Se calcula el número de recordings por gesto en el archivo 
   num_recordings = int(df.shape[0] / SAMPLES_PER_GESTURE)
   
   print(f"\tThere are {num_recordings} recordings of the {gesture} gesture.")
 
-for i in range(num_recordings):
+  for i in range(num_recordings):
     tensor = []
     for j in range(SAMPLES_PER_GESTURE):
       index = i * SAMPLES_PER_GESTURE + j
-      # normalize the input data, between 0 to 1:
-      # - acceleration is between: -4 to +4
-      # - gyroscope is between: -2000 to +2000
+      # Normalización de los datos utilizados para entrenar el modelo entre 0 y 1 
       tensor += [
           (df['Eje X'][index] + 179) / 358,
           (df['Eje Y'][index] + 179) / 358,
           (df['Eje Z'][index] + 179) / 358
       ]
+  # Se rellena los vecotres de entrada y salida 
+  inputs.append(tensor)
+  outputs.append(output)
 
-    inputs.append(tensor)
-    outputs.append(output)
-
-# convert the list to numpy array
+# Se convierten las listas en arreglos de numpy
 inputs = np.array(inputs)
 outputs = np.array(outputs)
 
 print("Data set parsing and preparation complete.")
 
-# Randomize the order of the inputs, so they can be evenly distributed for training, testing, and validation
-# https://stackoverflow.com/a/37710486/2020087
+# Se vuelve aleotrio el orden de las entradas para poder ser utilizados en entrenamiento, testeo y valicación 
 num_inputs = len(inputs)
 randomize = np.arange(num_inputs)
 np.random.shuffle(randomize)
 
-# Swap the consecutive indexes (0, 1, 2, etc) with the randomized indexes
+# Se cambian índices consecutivos (0,1,2,3,...) por índices aleatorios 
 inputs = inputs[randomize]
 outputs = outputs[randomize]
 
-# Split the recordings (group of samples) into three sets: training, testing and validation
+# Se separaon los datos en: entrenamiento, testeo and validación
 TRAIN_SPLIT = int(0.6 * num_inputs)
 TEST_SPLIT = int(0.2 * num_inputs + TRAIN_SPLIT)
 
@@ -107,20 +116,20 @@ outputs_train, outputs_test, outputs_validate = np.split(outputs, [TRAIN_SPLIT, 
 
 print("Data set randomization and splitting complete.")
 
-# build the model and train it
+# Creación del modelo y entrenamiento 
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(150, activation='relu')) # relu is used for performance
+model.add(tf.keras.layers.Dense(150, activation='relu')) # relu para rendimiuento 
 model.add(tf.keras.layers.Dense(100, activation='relu'))
 model.add(tf.keras.layers.Dense(50, activation='relu'))
-model.add(tf.keras.layers.Dense(NUM_GESTURES, activation='softmax')) # softmax is used, because we only expect one gesture to occur per input
+model.add(tf.keras.layers.Dense(NUM_GESTURES, activation='softmax')) # softmax se usa porque se espera un gesto por entrada 
 model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
 history = model.fit(inputs_train, outputs_train, epochs=600, batch_size=1, validation_data=(inputs_validate, outputs_validate))
 model.summary()
 
-# increase the size of the graphs. The default size is (6,4).
+# Aumento de tamaño de gráficos 
 plt.rcParams["figure.figsize"] = (20,10)
 
-# graph the loss, the model above is configure to use "mean squared error" as the loss function
+# Se gráfica las pérdidas (loss)
 loss = history.history['loss']
 val_loss = history.history['val_loss']
 epochs = range(1, len(loss) + 1)
@@ -134,7 +143,7 @@ plt.show()
 
 print(plt.rcParams["figure.figsize"])
 
-# graph the loss again skipping a bit of the start
+# Se gráfica de nuevo las pérididas omitiendo un poco de la entrada
 SKIP = 100
 plt.plot(epochs[SKIP:], loss[SKIP:], 'g.', label='Training loss')
 plt.plot(epochs[SKIP:], val_loss[SKIP:], 'b.', label='Validation loss')
@@ -145,7 +154,7 @@ plt.legend()
 plt.show()
 
 
-# graph of mean absolute error
+# Gráfica del mean absolute error
 mae = history.history['mae']
 val_mae = history.history['val_mae']
 plt.plot(epochs[SKIP:], mae[SKIP:], 'g.', label='Training MAE')
@@ -156,22 +165,23 @@ plt.ylabel('MAE')
 plt.legend()
 plt.show()
 
-# Convert the model to the TensorFlow Lite format without quantization
+# Se convierte a un modelo de Tensor Flow Lite 
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
 tflite_model = converter.convert()
 
-# Save the model to disk
+# Guarda el modelo en formeto .tflite
 open("gesture_model.tflite", "wb").write(tflite_model)
   
 
 basic_model_size = os.path.getsize("gesture_model.tflite")
 print("Model is %d bytes" % basic_model_size)
 
-#Run with test data
-# use the model to predict the test inputs
+#Prueba del modelo con datos para testeo 
+
+# Se usa el modelo para predicir las entradas de testeo
 predictions = model.predict(inputs_test)
 
-# print the predictions and the expected ouputs
+# Se imprimen las predicciones y la salida esperada
 print("predictions =\n", np.round(predictions, decimals=3))
 print("actual =\n", outputs_test)
 
@@ -185,11 +195,11 @@ plt.ylabel('True label')
 plt.xlabel('Predicted label')
 plt.show()
 
-# Exportar como header
+# Exportar como header file para poder usar en el micro 
 
-#!echo "const unsigned char model[] = {" > model.h
-#!cat gesture_model.tflite | xxd -i      >> model.h
-#!echo "};"                              >> model.h
+#!echo "const unsigned char model_machine[] = {" > model_machine.h
+#!cat gesture_model.tflite | xxd -i      >> model_machine.h
+#!echo "};"                              >> model_machine.h
 
 model_h_size = os.path.getsize("model.h")
 print(f"Header file, model.h, is {model_h_size:,} bytes.")
