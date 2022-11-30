@@ -211,6 +211,7 @@ open("gesture_model.tflite", "wb").write(tflite_model)
 basic_model_size = os.path.getsize("gesture_model.tflite")
 print("Model is %d bytes" % basic_model_size)
 
+
 #Prueba del modelo con datos para testeo 
 
 # Se usa el modelo para predicir las entradas de testeo
@@ -236,6 +237,6 @@ plt.show()
 #!cat gesture_model.tflite | xxd -i      >> model_machine.h
 #!echo "};"                              >> model_machine.h
 
-#model_h_size = os.path.getsize("model.h")
+#model_h_size = os.path.getsize("model_machine.h")
 #print(f"Header file, model.h, is {model_h_size:,} bytes.")
 #print("\nOpen the side panel (refresh if needed). Double click model.h to download the file.")

@@ -247,7 +247,7 @@ void loop() {
   for (int i = 0; i < NUM_GESTURES; i++)
   {
     printf(GESTURES[i]);
-    printf(": "); my_usart_print_int(USART1, output->data.f[i]);
+    printf(": "); my_usart_print_int(USART1, output->data.f[i]); printf("."); my_usart_print_int(USART1, ((int)(output->data.f[i]*10)%10)); my_usart_print_int(USART1, ((int)(output->data.f[i]*100)%10));
     printf("  ");
   }
   printf("\r\n");
