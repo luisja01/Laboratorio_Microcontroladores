@@ -7,7 +7,7 @@ STM32/Arduino: GPIO, Giroscopio, comunicaciones, TinyML
 Script de Python que genera modelo para cargar al microcontrolador
 Ciclo: II-2022
 '''
-
+#Se importan las librerias necesarias
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -29,12 +29,47 @@ plt.rcParams["figure.figsize"] = (20,10)
 plt.plot(index, df['Eje X'], 'g.', label='x', linestyle='solid', marker=',')
 plt.plot(index, df['Eje Y'], 'b.', label='y', linestyle='solid', marker=',')
 plt.plot(index, df['Eje Z'], 'r.', label='z', linestyle='solid', marker=',')
-plt.title("Acceleration")
-plt.xlabel("Sample #")
-plt.ylabel("Acceleration (G)")
+plt.title("Movimiento Estacionario")
+plt.xlabel("Muestra #")
+plt.ylabel("Movimiento")
 plt.legend()
 plt.show()
 
+filename = "circulo.csv"
+
+df = pd.read_csv(filename)
+
+index = range(1, len(df['Eje X']) + 1)
+
+plt.rcParams["figure.figsize"] = (20,10)
+
+# Gráfica de datos para un gesto 
+plt.plot(index, df['Eje X'], 'g.', label='x', linestyle='solid', marker=',')
+plt.plot(index, df['Eje Y'], 'b.', label='y', linestyle='solid', marker=',')
+plt.plot(index, df['Eje Z'], 'r.', label='z', linestyle='solid', marker=',')
+plt.title("Movimiento de Círculo")
+plt.xlabel("Muestra #")
+plt.ylabel("Movimiento")
+plt.legend()
+plt.show()
+
+filename = "golpe.csv"
+
+df = pd.read_csv(filename)
+
+index = range(1, len(df['Eje X']) + 1)
+
+plt.rcParams["figure.figsize"] = (20,10)
+
+# Gráfica de datos para un gesto 
+plt.plot(index, df['Eje X'], 'g.', label='x', linestyle='solid', marker=',')
+plt.plot(index, df['Eje Y'], 'b.', label='y', linestyle='solid', marker=',')
+plt.plot(index, df['Eje Z'], 'r.', label='z', linestyle='solid', marker=',')
+plt.title("Movimiento de Golpe")
+plt.xlabel("Muestra #")
+plt.ylabel("Movimiento")
+plt.legend()
+plt.show()
 
 # Entrenamiento y creación de red neuronal 
 
@@ -53,7 +88,7 @@ GESTURES = [
 ]
 
 #Número de samples por gesto 
-SAMPLES_PER_GESTURE = 119   
+SAMPLES_PER_GESTURE = 30   
 
 NUM_GESTURES = len(GESTURES)
 
@@ -88,9 +123,9 @@ for gesture_index in range(NUM_GESTURES):
           (df['Eje Y'][index] + 179) / 358,
           (df['Eje Z'][index] + 179) / 358
       ]
-  # Se rellena los vecotres de entrada y salida 
-  inputs.append(tensor)
-  outputs.append(output)
+    # Se rellena los vecotres de entrada y salida 
+    inputs.append(tensor)
+    outputs.append(output)
 
 # Se convierten las listas en arreglos de numpy
 inputs = np.array(inputs)
@@ -118,9 +153,9 @@ print("Data set randomization and splitting complete.")
 
 # Creación del modelo y entrenamiento 
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(150, activation='relu')) # relu para rendimiuento 
+model.add(tf.keras.layers.Dense(125, activation='relu')) # relu para rendimiento 
 model.add(tf.keras.layers.Dense(100, activation='relu'))
-model.add(tf.keras.layers.Dense(50, activation='relu'))
+model.add(tf.keras.layers.Dense(100, activation='relu'))
 model.add(tf.keras.layers.Dense(NUM_GESTURES, activation='softmax')) # softmax se usa porque se espera un gesto por entrada 
 model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
 history = model.fit(inputs_train, outputs_train, epochs=600, batch_size=1, validation_data=(inputs_validate, outputs_validate))
@@ -201,6 +236,6 @@ plt.show()
 #!cat gesture_model.tflite | xxd -i      >> model_machine.h
 #!echo "};"                              >> model_machine.h
 
-model_h_size = os.path.getsize("model.h")
-print(f"Header file, model.h, is {model_h_size:,} bytes.")
-print("\nOpen the side panel (refresh if needed). Double click model.h to download the file.")
+#model_h_size = os.path.getsize("model.h")
+#print(f"Header file, model.h, is {model_h_size:,} bytes.")
+#print("\nOpen the side panel (refresh if needed). Double click model.h to download the file.")

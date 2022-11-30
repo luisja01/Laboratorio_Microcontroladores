@@ -1,5 +1,4 @@
 /* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -12,6 +11,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
+
 
 #include "main_functions.h"
 #include "gyro.h"
@@ -28,7 +28,7 @@ limitations under the License.
 #include <libopencm3/stm32/usart.h> 
 #include "model_machine.h"
 
-const int numSamples = 39;
+const int numSamples = 30;
 int samplesRead = 0;
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
@@ -106,7 +106,6 @@ void setup() {
   //       "to supported version %d.",
   //       model->version(), TFLITE_SCHEMA_VERSION);
   //   return;
-  // }
 
   // This pulls in all the operation implementations we need.
   // NOLINTNEXTLINE(runtime-global-variables)
